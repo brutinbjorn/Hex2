@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "Minigin.h"
 
-#include <steam_api_common.h>
+//#include <steam_api_common.h>
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -256,7 +256,7 @@ void dae::Minigin::Run()
 		bool doContinue = true;
 		while (doContinue)
 		{
-			SteamAPI_RunCallbacks();
+			//SteamAPI_RunCallbacks();
 			time.Update();
 
 			doContinue = input.ProcessInput();

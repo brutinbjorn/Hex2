@@ -1,9 +1,11 @@
 #pragma once
+#include "MiniginPCH.h"
 #include <BaseComponent.h>
 #include <vector>
 
 //#include "BurgerPartComponent.h"
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
+
 
 class BurgerComponent :
     public BaseComponent
