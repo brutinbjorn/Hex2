@@ -1,0 +1,8 @@
+XBoxController is player1
+keyboard is player2
+
+Xbox DPadLeft adds points to player2
+Xbox DPadDown kills player1
+
+keyboard arrow up adds points to player2
+keyboard arrow down kills player2
