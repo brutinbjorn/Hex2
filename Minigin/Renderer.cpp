@@ -47,31 +47,20 @@ void dae::Renderer::Render()
 	SDL_RenderClear(m_Renderer);
 
 	SceneManager::GetInstance().Render();
-
-	ImGui_ImplOpenGL2_NewFrame();
-	ImGui_ImplSDL2_NewFrame(m_Window);
-	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
-
 	ImGuiRender();
-
-
-
-	ImGui::Render();
-	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
-
-
-	SDL_RenderPresent(m_Renderer);
 }
 
 void dae::Renderer::ImGuiRender()
 {
-	//ImGui::Begin("TTC exercise 1");
-	//m_CasheExersice.ExerciseOne();
-	//ImGui::End();
-	//ImGui::Begin("TTC exercise 2");
-	//m_CasheExersice.ExerciseTwo();
-	//ImGui::End();
+	ImGui_ImplOpenGL2_NewFrame();
+	ImGui_ImplSDL2_NewFrame(m_Window);
+
+	ImGui::NewFrame();
+	ImGui::ShowDemoWindow();
+	ImGui::Render();
+
+	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	SDL_RenderPresent(m_Renderer);
 }
 
 void dae::Renderer::Destroy()

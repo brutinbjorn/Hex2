@@ -33,6 +33,8 @@ dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 	return *scene;
 }
 
+
+
 dae::Scene* dae::SceneManager::GetScene(const std::string& name)
 {
 	for (const auto& scene : m_Scenes)
@@ -40,6 +42,11 @@ dae::Scene* dae::SceneManager::GetScene(const std::string& name)
 			return scene.get();
 
 	return nullptr;
+}
+
+void dae::SceneManager::AddScene(std::shared_ptr<Scene> newScene)
+{
+	m_Scenes.push_back(newScene);
 }
 
 void dae::SceneManager::PostInitialize()

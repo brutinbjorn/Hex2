@@ -9,27 +9,33 @@ namespace dae
 	{
 		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
+		//adds the gameobject to the scene, so it gets its updates,render, etc.
 		void AddGameObject(const std::shared_ptr<GameObject>& object);
-
+		//place the game objects you want to add to the scene here.
+		virtual void Initialize() {};
+		//initailizes the gameobjects.
 		void PostInitialize();
+		//fixed update for objects.
 		void FixedUpdate(const float ft);
+		//update for objects.
 		void Update(const float dt);
+		//late update for objects.
 		void LateUpdate(const float lt);
+		//Render the objects.
 		void Render() const;
 
 		std::string GetName() { return m_Name; }
 
-		~Scene();
+		virtual ~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
-
-	private: 
 		explicit Scene(const std::string& name);
 
+	protected:
 		std::string m_Name;
-		std::vector < std::shared_ptr<GameObject>> m_Objects{};
+		std::vector <std::shared_ptr<GameObject>> m_Objects{};
 
 		static unsigned int m_IdCounter; 
 	};

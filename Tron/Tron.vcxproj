@@ -171,7 +171,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TankControlComponent.cpp" />
+    <ClCompile Include="TankGameScene.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Tron.cpp" />
+    <ClCompile Include="TronConstructor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TankControlComponent.h" />
+    <ClInclude Include="TankGameScene.h" />
+    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="TronConstructor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
