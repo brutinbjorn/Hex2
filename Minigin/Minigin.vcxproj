@@ -248,6 +248,9 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DefaultScene.h" />
+    <ClInclude Include="GraphConnections.h" />
+    <ClInclude Include="GraphEnums.h" />
+    <ClInclude Include="GraphNodes.h" />
     <ClInclude Include="HealthBarComponent.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="HitboxManager.h" />
@@ -332,6 +335,9 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
+    <ClCompile Include="GraphConnections.cpp" />
+    <ClCompile Include="GraphEnums.cpp" />
+    <ClCompile Include="GraphNodes.cpp" />
     <ClCompile Include="HealthBarComponent.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="HitboxManager.cpp" />

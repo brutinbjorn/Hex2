@@ -172,16 +172,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="TankControlComponent.cpp" />
+    <ClCompile Include="TankFieldGridComponent.cpp" />
     <ClCompile Include="TankGameScene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Tron.cpp" />
     <ClCompile Include="TronConstructor.cpp" />
+    <ClCompile Include="WallComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TankControlComponent.h" />
+    <ClInclude Include="TankFieldGridComponent.h" />
     <ClInclude Include="TankGameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="TronConstructor.h" />
+    <ClInclude Include="WallComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

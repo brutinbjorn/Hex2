@@ -2,7 +2,7 @@
 #include "ComponentList.h"
 #include "TankControlComponent.h"
 
-std::shared_ptr<dae::GameObject> ObjectConstructor::PlayerTank()
+std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 {
 	auto tank = std::make_shared<dae::GameObject>();
 
@@ -20,6 +20,15 @@ std::shared_ptr<dae::GameObject> ObjectConstructor::PlayerTank()
 
 
 	return tank;
+
+
+}
+
+std::shared_ptr<dae::GameObject> TronConstructor::TankGameField()
+{
+	auto field = std::make_shared<dae::GameObject>();
+
+	auto fieldGrid = new;
 
 
 }

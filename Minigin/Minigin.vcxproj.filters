@@ -52,6 +52,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{2302b2b9-862a-4459-8a72-0b799a4851ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{837ead22-1b77-4b42-b4a0-dfa767a0d272}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -183,6 +186,15 @@
     <ClInclude Include="DefaultScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="GraphConnections.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphNodes.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphEnums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -301,6 +313,15 @@
     </ClCompile>
     <ClCompile Include="DefaultScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphConnections.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphNodes.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphEnums.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,11 +2,11 @@
 #include "GameObject.h"
 #include "MiniginPCH.h"
 
-namespace ObjectConstructor
+namespace TronConstructor
 {
 	std::shared_ptr<dae::GameObject> PlayerTank();
 
-
+	std::shared_ptr<dae::GameObject> TankGameField();
 
 }
 
