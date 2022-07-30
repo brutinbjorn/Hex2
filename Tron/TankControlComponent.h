@@ -16,9 +16,9 @@ public:
 	TankControlComponent& operator=(TankControlComponent&& other) noexcept = delete;
 
 	void Initialize() override {}
-	void FixedUpdate(const float ft) override {}
-	void Update(const float dt) override;
-	void LateUpdate(const float lt) override {}
+	void FixedUpdate(const float)  override {}
+	void Update(const float ) override;
+	void LateUpdate(const float ) override {}
 	void Render() const override {}
 	void GuiRender() const override {}
 

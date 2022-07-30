@@ -24,7 +24,7 @@ namespace dae
 		//Render the objects.
 		void Render() const;
 
-		std::string GetName() { return m_Name; }
+		std::string GetName() { return m_Name; };
 
 		virtual ~Scene();
 		Scene(const Scene& other) = delete;

@@ -208,8 +208,9 @@ void dae::Minigin::Run()
 	TimeManager::GetInstance().start();
 
 	LoadGame();
-	{
 
+	SceneManager::GetInstance().PostInitialize();
+	{
 		auto& input = dae::InputManager::GetInstance();
 		auto& time = dae::TimeManager::GetInstance();
 

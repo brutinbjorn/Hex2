@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-
+#include "MiniginPCH.h"
 namespace dae
 {
 	class Scene;

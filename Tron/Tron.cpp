@@ -8,9 +8,10 @@
 #endif
 
 #include "Minigin.h"
+#include "TronEngine.h"
 
 int main(int, char* []) {
-	dae::Minigin engine;
+	TronEngine engine;
 	engine.Run();
 	return 0;
 }

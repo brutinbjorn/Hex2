@@ -3,6 +3,7 @@
 #include "BaseComponent.h"
 #include "RenderComponent.h"
 #include "Transform.h"
+#include "MiniginPCH.h"
 
 namespace dae
 {
