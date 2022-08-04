@@ -3,8 +3,6 @@
 #include <SDL_rect.h>
 #include <glm/detail/type_vec.hpp>
 
-
-
 enum Directions
 {
 	right = 0b0001,

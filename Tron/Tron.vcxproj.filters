@@ -13,7 +13,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Scenes">
+    <Filter Include="Source Files\TronComponents">
+      <UniqueIdentifier>{4a957fb0-6c51-4b4a-ac83-cf9f97fa24e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Commands">
+      <UniqueIdentifier>{e6dbde0b-6301-4978-b78e-fda4724472d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{7f2cf5ff-7452-4cea-8db3-797ecf429dbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -22,54 +28,60 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TankGameScene.cpp">
-      <Filter>Scenes</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuScene.cpp">
-      <Filter>Scenes</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="TronConstructor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TankControlComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TankFieldGridComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WallComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TronEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TankControlComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TankFieldGridComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
     <ClCompile Include="TankCommands.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="WallComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="TankFieldLineComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TankGameScene.h">
-      <Filter>Scenes</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuScene.h">
-      <Filter>Scenes</Filter>
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="TronConstructor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TankControlComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TankFieldGridComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WallComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TronEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TankControlComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
     <ClInclude Include="TankCommands.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="TankFieldGridComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="WallComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="TankFieldLineComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

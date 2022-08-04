@@ -16,8 +16,6 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 
 	auto TankControls = new TankControlComponent(BodyRender,GunRender);
 	tank->AddComponent(TankControls);
-
-	tank->GetTransform()->SetPosition(40, 40, 0);
 	return tank;
 
 

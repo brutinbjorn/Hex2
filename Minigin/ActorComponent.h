@@ -1,5 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
+#include "SDL.h"
+#include "MiniginPCH.h"
 //#include "cstring"
 
 class Subject;

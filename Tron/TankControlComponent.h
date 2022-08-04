@@ -25,6 +25,8 @@ public:
 	//add's the value to the current rotation.
 	void RotateGun(float RotToAdd);
 
+	//void SetDirection();
+
 private:
 	RenderComponent* m_npBodysprite = nullptr;
 	RenderComponent* m_npGunSprite = nullptr;

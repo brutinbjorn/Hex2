@@ -182,6 +182,7 @@
     <ClCompile Include="TankCommands.cpp" />
     <ClCompile Include="TankControlComponent.cpp" />
     <ClCompile Include="TankFieldGridComponent.cpp" />
+    <ClCompile Include="TankFieldLineComponent.cpp" />
     <ClCompile Include="TankGameScene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Tron.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="TankCommands.h" />
     <ClInclude Include="TankControlComponent.h" />
     <ClInclude Include="TankFieldGridComponent.h" />
+    <ClInclude Include="TankFieldLineComponent.h" />
     <ClInclude Include="TankGameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="TronConstructor.h" />
