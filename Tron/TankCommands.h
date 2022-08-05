@@ -42,3 +42,16 @@ private:
 	float m_xMove = 0.f;
 	float m_yMove = 0.f;
 };
+
+class TurnGunCommand : public Command
+{
+public:
+	TurnGunCommand(float direction) :m_dir(direction) { };
+	void Execute() override
+	{
+		
+	};
+
+private:
+	float m_dir;
+};

@@ -16,7 +16,7 @@ public:
 	virtual void Update(const float dt) = 0;
 	virtual void LateUpdate(const float lt) = 0;
 	virtual void Render() const = 0;
-	virtual void GuiRender() const = 0;
+	virtual void GuiRender() const {};
 
 	//messages
 	virtual bool Recieve(BaseComponent* ,const std::string&) {return false; };

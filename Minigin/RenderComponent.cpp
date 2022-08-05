@@ -40,7 +40,7 @@ void RenderComponent::Render() const
 		if (!m_IsSizeSet)
 			dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);			
 		else //if (!m_pSrcRect)
-			dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, static_cast<int>(m_Size.x), static_cast<int>(m_Size.y));
+			dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, static_cast<int>(m_Size.x), static_cast<int>(m_Size.y),m_Rotation);
 		//else
 		//	dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, m_Size.x, m_Size.y,*m_pSrcRect,m_Rotation);
 		

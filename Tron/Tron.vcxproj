@@ -185,6 +185,7 @@
     <ClCompile Include="TankFieldLineComponent.cpp" />
     <ClCompile Include="TankGameScene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="TankGunComponent.cpp" />
     <ClCompile Include="Tron.cpp" />
     <ClCompile Include="TronConstructor.cpp" />
     <ClCompile Include="TronEngine.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="TankFieldLineComponent.h" />
     <ClInclude Include="TankGameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="TankGunComponent.h" />
     <ClInclude Include="TronConstructor.h" />
     <ClInclude Include="TronEngine.h" />
     <ClInclude Include="WallComponent.h" />

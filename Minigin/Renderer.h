@@ -27,8 +27,8 @@ namespace dae
 		void Destroy();
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
-		void RenderTexture(const Texture2D& texture, float x, float y, int width, int height) const;
-		//void RenderCircle(float x, float y, float r);
+		void RenderTexture(const Texture2D& texture, float x, float y, int width, int height, const double angle = 0) const;
+		void RenderTexture(const Texture2D& texture, float x, float y, int width, int height, const struct SDL_Rect& srcRect, const double angle) const;
 		void RenderRect(const SDL_Rect& rec, const SDL_Color& color = { 255,255,255,255 });
 		void RenderRect(const glm::vec2& pos, int Height,int yWidth, const SDL_Color& color = {255,255,255,255});
 		void RenderPointRect(int xCenter, int yCenter, int size);

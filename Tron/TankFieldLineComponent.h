@@ -40,9 +40,9 @@ public:
 	void GuiRender() const override {};
 	void Render() const override ;
 private:
-	SDL_Rect m_ZoneOfOverlap;
+	SDL_Rect m_ZoneOfOverlap = {5,5,5,5};
 	glm::vec2 m_CenterPosition;
-	int m_offset;
+	int m_offset = 2;
 
 	char m_Directions = 0b0000;
 

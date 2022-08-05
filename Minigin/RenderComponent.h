@@ -35,7 +35,7 @@ public:
 	void SetOffset(int x, int y);
 	glm::vec2 GetOffset() const { return m_offset; };
 
-	//void SetRotation(double rot) { m_Rotation = rot; };
+	void SetRotation(double rot) { m_Rotation = rot; };
 	void SetTexture(const std::string & filename);
 	void SetTexture(dae::Texture2D * texture2D);
 	bool Recieve(BaseComponent* , const std::string& ) override;
@@ -55,6 +55,6 @@ protected:
 	bool m_IsBoundToOtherComp = false;
 	glm::ivec2 m_Size{0,0};
 	glm::ivec2 m_offset{ 0,0 };
-	//double m_Rotation = 0.0;
+	double m_Rotation = 0.0;
 };
 
