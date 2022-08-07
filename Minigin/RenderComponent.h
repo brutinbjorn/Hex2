@@ -9,12 +9,19 @@ namespace dae
 {
 	class Texture2D;
 }
+enum RenderSettings
+{
+	USE_OFFSET = 0b1,
+	USE_ROTATION = 0b10,
+	USE_CUSTOM_SIZE = 0b100,
+	USE_TEXTURE_OFFSET = 0b1000
+};
 
-class RenderComponent :
+class RenderComponent final:
     public BaseComponent
 {
 public:
-	RenderComponent() = default;
+	RenderComponent();
 	~RenderComponent() override;
 
 	void Initialize() override{};
@@ -26,35 +33,48 @@ public:
 	void GuiRender() const override {};
 
 
-	//void SetPosition(float x, float y, float z = 0);
-	//void SetPosition(glm::vec3 pos);
+	//Texture
+	void SetTexture(const std::string & filename);
+	void SetTexture(dae::Texture2D * texture2D);
 
-	//SDL SetsSizes in pixels
-	//seting 1 of the 2 to zero resets it to normal size
+	//Size
 	void SetSize(int x, int y);
+
+	//Offset
+	void EnableOffset(bool IsTrue = true) { m_useOffset = IsTrue; };
 	void SetOffset(int x, int y);
 	glm::vec2 GetOffset() const { return m_offset; };
 
-	void SetRotation(double rot) { m_Rotation = rot; };
-	void SetTexture(const std::string & filename);
-	void SetTexture(dae::Texture2D * texture2D);
-	bool Recieve(BaseComponent* , const std::string& ) override;
-	//void SetSourceRect(SDL_Rect rect);
 
-protected:
+	//rotation
+	void EnableRotation(bool Istrue = false) { m_RotateTrue = Istrue; };
+	void SetRotation(float rot) { m_Rotation = rot; };
+	float GetRotation() const { return m_Rotation; };
+	void SetRotationPoint(const SDL_Point& point) { m_RotationPoint = point; };
+	const SDL_Point& GetRotationPoint() const { return m_RotationPoint; };
+
+
+	bool Recieve(BaseComponent* , const std::string& ) override;
+	
+
+private:
 	dae::Texture2D* m_pTexture = nullptr;
 	SDL_Rect* m_pSrcRect = nullptr;
 
-	//SDL_Cir*
-	//transform value in RenderComp & gameObject, consider using the gameObject transform or renaming/reusing. translate? offset?
+	SDL_Point m_RotationPoint = { 0,0 };
 
-	//RECONS the render now asks his parent if it gots a transform, uses it as a base and adds its offset ontop of it.
-	//dae::Transform m_transform;
+	bool m_useOffset = true;
+	glm::ivec2 m_offset{ 0,0 };
+	glm::ivec2 m_Size{0,0};
 
+	char m_RenderSettings = 0b1111111 - USE_CUSTOM_SIZE;
+
+	bool m_RotateTrue = false;
 	bool m_IsSizeSet = false;
 	bool m_IsBoundToOtherComp = false;
-	glm::ivec2 m_Size{0,0};
-	glm::ivec2 m_offset{ 0,0 };
-	double m_Rotation = 0.0;
+	float m_Rotation = 0.0;
+
+
+
 };
 

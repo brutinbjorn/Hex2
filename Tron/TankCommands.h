@@ -2,6 +2,7 @@
 #include "Command.h"
 #include "GameObject.h"
 #include "TankFieldGridComponent.h"
+#include "TankGunComponent.h"
 
 //enum Directions
 //{
@@ -43,15 +44,43 @@ private:
 	float m_yMove = 0.f;
 };
 
+class FreeMoveCommand : public Command
+{
+public:
+	FreeMoveCommand(dae::GameObject* actor, float xMove, float yMove)
+		:m_pActor(actor), m_xMove(xMove), m_yMove(yMove) {};
+	void Execute() override
+	{
+		 
+	};
+private:
+	dae::GameObject* m_pActor;
+	float m_xMove = 0.f;
+	float m_yMove = 0.f;
+};
+
 class TurnGunCommand : public Command
 {
 public:
-	TurnGunCommand(float direction) :m_dir(direction) { };
+	TurnGunCommand(TankGunComponent* GunComp,float direction) :m_pGunComp(GunComp),m_dir(direction) { };
 	void Execute() override
 	{
-		
+		m_pGunComp->RotateGun(m_dir);
 	};
 
 private:
+	TankGunComponent* m_pGunComp = nullptr;
 	float m_dir;
+};
+
+class FireGunCommand : public Command
+{
+public:
+	FireGunCommand(TankGunComponent* gunComp) :m_pGunComp(gunComp) {};
+	void Execute() override
+	{
+		m_pGunComp->ShootGun();
+	}
+private:
+	TankGunComponent* m_pGunComp = nullptr;
 };

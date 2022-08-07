@@ -1,6 +1,7 @@
 #include "TronConstructor.h"
 #include "ComponentList.h"
 #include "TankControlComponent.h"
+#include "TankGunComponent.h"
 
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 {
@@ -13,6 +14,12 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	auto GunRender = new RenderComponent();
 	tank->AddComponent(GunRender);
 	GunRender->SetTexture("TankCannonRed.png");
+	GunRender->SetOffset(-7, 10);
+
+	auto GunLogic = new TankGunComponent();
+	GunLogic->LinkGunTexture(GunRender);
+	tank->AddComponent(GunLogic);
+
 
 	auto TankControls = new TankControlComponent(BodyRender,GunRender);
 	tank->AddComponent(TankControls);

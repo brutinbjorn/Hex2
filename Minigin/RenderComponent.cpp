@@ -7,6 +7,8 @@
 #include "TextComponent.h"
 #include "Texture2D.h"
 
+RenderComponent::RenderComponent() = default;
+
 RenderComponent::~RenderComponent()
 {
 	
@@ -27,20 +29,54 @@ void RenderComponent::Render() const
 
 	if(m_pTexture)
 	{
-		pos.x += m_offset.x - m_Size.x / 2;
-		pos.y += m_offset.y - m_Size.y / 2;
-		//dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);
 
-		//const glm::vec3& pos = m_transform.GetPosition() + glm ::vec3(m_offset,0);
+
+
+		SDL_Point rotationPoint = {0,0};
+		if (m_RenderSettings & RenderSettings::USE_ROTATION)
+			rotationPoint = m_RotationPoint;
+
+		if (m_RenderSettings & RenderSettings::USE_OFFSET)
+		{
+			pos.x += m_offset.x - m_Size.x / 2;
+			pos.y += m_offset.y - m_Size.y / 2;
+		}
+
+
 		testRect.x = int(pos.x) ;
 		testRect.y = int(pos.y) ;
-		testRect.w = int(m_Size.x);
-		testRect.h = int(m_Size.y);
+		testRect.w = int(0);
+		testRect.h = int(0);
+
+		int witdh, height;
+		if (m_RenderSettings & RenderSettings::USE_CUSTOM_SIZE)
+		{
+			witdh = m_Size.x;
+			height = m_Size.y;
+		}
+		else
+		{
+			SDL_QueryTexture(m_pTexture->GetSDLTexture(), nullptr, nullptr, &witdh, &height);
+		}
+
+		float rotation = 0;
+		auto rotPoint = SDL_Point{ 0,0 };
+		if (m_RenderSettings & RenderSettings::USE_ROTATION)
+		{
+			rotation = m_Rotation;
+			rotPoint = m_RotationPoint;
+		}
+
+
+		///(const Texture2D & texture, float x, float y, int width, int height,
+		///	const SDL_Rect & srcRect, const double angle, const SDL_Point & rotCenter)
+		dae::Renderer::GetInstance().RenderTexture(*m_pTexture,pos.x,pos.y,witdh,height,testRect, rotation, rotPoint);
+
 		//	dae::Renderer::GetInstance().RenderRect(&testRect, SDL_Color{ 255,0,0,255 });
-		if (!m_IsSizeSet)
-			dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);			
-		else //if (!m_pSrcRect)
-			dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, static_cast<int>(m_Size.x), static_cast<int>(m_Size.y),m_Rotation);
+		//if (!m_IsSizeSet)
+		//dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);			
+		//else //if (!m_pSrcRect)
+		//	dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, static_cast<int>(m_Size.x), static_cast<int>(m_Size.y),m_Rotation);
 		//else
 		//	dae::Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y, m_Size.x, m_Size.y,*m_pSrcRect,m_Rotation);
 		

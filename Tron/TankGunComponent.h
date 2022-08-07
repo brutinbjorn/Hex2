@@ -16,9 +16,15 @@ public:
 	void LateUpdate(const float ) override {};
 	void Render() const override {};
 
-	void SetGunTexture(RenderComponent* GunSprite) { nm_pRenderComponent = GunSprite; };
+	void LinkGunTexture(RenderComponent* GunSprite) { nm_pRenderComponent = GunSprite; };
 	void ShootGun();
-	void RotateGun(float AngleToAdd) { m_Angle += AngleToAdd; };
+
+	void RotateGun(float AngleToAdd)
+	{
+		m_Angle += AngleToAdd;
+		nm_pRenderComponent->SetRotation(m_Angle);
+	};
+
 private:
 
 	RenderComponent* nm_pRenderComponent = nullptr;
