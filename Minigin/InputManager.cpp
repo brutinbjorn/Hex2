@@ -94,7 +94,7 @@ bool dae::InputManager::ProcessInput()
 		}
 		for (std::list<Action>::iterator iter = m_Actions.begin(); iter != m_Actions.end(); ++iter)
 		{
-			if (e.type == SDL_KEYDOWN && iter->type == InputType::WentDown && e.key.keysym.scancode == iter->key)
+			if (e.type == SDL_KEYDOWN && iter->type == InputType::WentDown  && e.key.keysym.scancode == iter->key)
 			{
 				iter->pCommand->Execute();
 			}
@@ -102,7 +102,8 @@ bool dae::InputManager::ProcessInput()
 			{
 				iter->pCommand->Execute();
 			}
-			if (keyState[iter->key] && iter->type == InputType::IsPressed)
+			//if (keyState[iter->key] && iter->type == InputType::IsPressed)
+			if(keyState[iter->key] == m_EventOld.key.keysym.scancode && iter->type == InputType::IsPressed)
 			{
 				iter->pCommand->Execute();
 			}
@@ -110,6 +111,7 @@ bool dae::InputManager::ProcessInput()
 		ImGui_ImplSDL2_ProcessEvent(&e);
 	}
 
+	m_EventOld = e;
 
 
 	if(!m_pController || !m_pController->IsValid())

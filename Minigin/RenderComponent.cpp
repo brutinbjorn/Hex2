@@ -92,6 +92,17 @@ void RenderComponent::SetSize(int x, int y)
 	m_Size = glm::ivec2{ x, y };
 }
 
+glm::ivec2 RenderComponent::GetTextureSize() const
+{
+
+	int witdh = 0, height = 0;
+	if(m_pTexture)
+		SDL_QueryTexture(m_pTexture->GetSDLTexture(), nullptr, nullptr, &witdh, &height);
+
+	return glm::ivec2(witdh, height);
+
+}
+
 void RenderComponent::SetOffset(int x, int y)
 {
 	m_offset = glm::ivec2(x, y);

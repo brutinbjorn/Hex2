@@ -32,19 +32,18 @@ public:
 	void Render() const override;
 	void GuiRender() const override {};
 
-
 	//Texture
 	void SetTexture(const std::string & filename);
 	void SetTexture(dae::Texture2D * texture2D);
 
 	//Size
 	void SetSize(int x, int y);
+	glm::ivec2 GetTextureSize() const;
 
 	//Offset
 	void EnableOffset(bool IsTrue = true) { m_useOffset = IsTrue; };
 	void SetOffset(int x, int y);
 	glm::vec2 GetOffset() const { return m_offset; };
-
 
 	//rotation
 	void EnableRotation(bool Istrue = false) { m_RotateTrue = Istrue; };
@@ -52,7 +51,6 @@ public:
 	float GetRotation() const { return m_Rotation; };
 	void SetRotationPoint(const SDL_Point& point) { m_RotationPoint = point; };
 	const SDL_Point& GetRotationPoint() const { return m_RotationPoint; };
-
 
 	bool Recieve(BaseComponent* , const std::string& ) override;
 	

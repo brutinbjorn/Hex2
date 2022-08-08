@@ -51,7 +51,7 @@ public:
 		:m_pActor(actor), m_xMove(xMove), m_yMove(yMove) {};
 	void Execute() override
 	{
-		 
+		m_pActor->GetTransform()->Translate(m_xMove, m_yMove, 0);
 	};
 private:
 	dae::GameObject* m_pActor;

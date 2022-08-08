@@ -49,7 +49,7 @@ namespace dae
 		friend class Singleton<InputManager>;
 		//bool IsPressed(XBox360Controller::ControllerButton button) const;
 		//XINPUT_STATE m_CurrentState{};
-
+		SDL_Event m_EventOld;
 		XBox360Controller* m_pController = nullptr;
 		std::vector<XBox360Controller*> m_pControllers;
 		std::list<Action> m_Actions;

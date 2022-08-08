@@ -229,14 +229,12 @@ void dae::Minigin::Run()
 				float ft = time.GetMsPerUpdate();
 				FixedUpdate(ft);
 			}
-
 			float dt = time.GetDeltaTime();
 
 			Update(dt);
 			Render();
 		}
 	}
-
 	Cleanup();
 }
 
@@ -244,8 +242,6 @@ void dae::Minigin::FixedUpdate(const float ft)
 {
 	SceneManager::GetInstance().FixedUpdate(ft);
 }
-
-
 
 void dae::Minigin::Update(const float deltaTime)
 {
