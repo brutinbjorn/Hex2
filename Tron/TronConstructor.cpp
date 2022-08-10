@@ -1,6 +1,8 @@
 #include "TronConstructor.h"
 #include "ComponentList.h"
 #include "TankControlComponent.h"
+#include "TankFieldControlComponent.h"
+#include "TankFieldGridComponent.h"
 #include "TankGunComponent.h"
 
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
@@ -28,11 +30,35 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 
 }
 
-std::shared_ptr<dae::GameObject> TronConstructor::TankGameField()
+std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::string& BackgroundImg,const std::string& PathJsonFile)
 {
 	auto field = std::make_shared<dae::GameObject>();
 
-	//auto fieldGrid = new;
+	auto bgImage = new RenderComponent();
+	bgImage->SetTexture(BackgroundImg);
+
+	auto size = bgImage->GetTextureSize();
+	bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
+
+	field->AddComponent(bgImage);
+	field->SetPosition(510, 360);// Center position of screen.
+
+	auto FieldControl = new TankFieldControlComponent();
+	field->AddComponent(FieldControl);
+	FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile);
+
+
+
+	//AddGameObject(background);
+	//former---<//
+	//auto BackGround = new RenderComponent();
+	//BackGround->SetTexture(BackgroundImg);
+	//field->AddComponent(BackGround);
+	//auto FieldLogic = new TankFieldGridComponent();
+	//Fie
+
+
+
 
 	return field;
 }

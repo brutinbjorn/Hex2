@@ -6,7 +6,9 @@ namespace TronConstructor
 {
 	std::shared_ptr<dae::GameObject> PlayerTank();
 
-	std::shared_ptr<dae::GameObject> TankGameField();
+	std::shared_ptr<dae::GameObject> TankGameField(const std::string& BackgroundImg, const std::string& PathJsonFile);
+
+
 
 }
 

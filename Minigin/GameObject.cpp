@@ -61,7 +61,7 @@ void dae::GameObject::Render() const
 //}
 
 void dae::GameObject::SetPosition(float x, float y)
-{
+{ 
 	m_Transform.SetPosition(x, y, 0.0f);
 }
 
@@ -70,6 +70,7 @@ void dae::GameObject::AddComponent(BaseComponent* ToAdd)
 {
 	m_pComponents.push_back(ToAdd);
 	SetChild(ToAdd);
+//	return ToAdd;
 }
 
 bool dae::GameObject::Send( BaseComponent* sender, const std::string& msg)

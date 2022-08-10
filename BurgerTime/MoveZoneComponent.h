@@ -5,10 +5,10 @@
 
 enum Directions
 {
-	right = 0b0001,
-	left =	0b0010,
-	up =	0b0100,
-	down =	0b1000
+	DIRECTION_RIGHT = 0b0001,
+	DIRECTION_LEFT =	0b0010,
+	DIRECTION_UP =	0b0100,
+	DIRECTION_DOWN =	0b1000
 };
 
 class MoveZoneComponent :

@@ -26,13 +26,13 @@ public:
 		{
 
 			auto actor = m_pActor->GetComponent<ActorComponent>();
-			if ((left & val) && m_xMove < 0)
+			if ((DIRECTION_LEFT & val) && m_xMove < 0)
 				actor->MoveTranslate(m_xMove, 0);
-			if ((right & val) && m_xMove > 0)
+			if ((DIRECTION_RIGHT & val) && m_xMove > 0)
 				actor->MoveTranslate(m_xMove, 0);
-			if ((up & val) && m_yMove < 0)
+			if ((DIRECTION_UP & val) && m_yMove < 0)
 				actor->MoveTranslate(0, m_yMove);
-			if ((down & val) && m_yMove > 0)
+			if ((DIRECTION_DOWN & val) && m_yMove > 0)
 				actor->MoveTranslate(0, m_yMove);
 		}
 	};

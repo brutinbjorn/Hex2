@@ -20,7 +20,7 @@
 using ControllerCommandMap = std::map<XBox360Controller::ControllerButton, Command*>;
 using KeyBoardCommandMap = std::map<XBox360Controller::KeyBoardButton, Command*>;
 
-dae::InputManager::InputManager()
+dae::InputManager::InputManager() : m_EventOld{0}
 {
 	//int cId = CheckForController();
 
@@ -101,9 +101,8 @@ bool dae::InputManager::ProcessInput()
 			if (e.type == SDL_KEYUP && iter->type == InputType::WentUp && e.key.keysym.scancode == iter->key)
 			{
 				iter->pCommand->Execute();
-			}
-			//if (keyState[iter->key] && iter->type == InputType::IsPressed)
-			if(keyState[iter->key] == m_EventOld.key.keysym.scancode && iter->type == InputType::IsPressed)
+			} //TODO still need to fix this.
+			if (keyState[iter->key] && iter->type == InputType::IsPressed)
 			{
 				iter->pCommand->Execute();
 			}

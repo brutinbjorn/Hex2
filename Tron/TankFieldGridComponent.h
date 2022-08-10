@@ -3,10 +3,10 @@
 
 enum Directions
 {
-	right = 0b0001,
-	left = 0b0010,
-	up = 0b0100,
-	down = 0b1000
+	DIRECTION_RIGHT = 0b0001,
+	DIRECTION_LEFT = 0b0010,
+	DIRECTION_UP = 0b0100,
+	DIRECTION_DOWN = 0b1000
 };
 
 class TankFieldGridComponent final : public BaseComponent
@@ -21,7 +21,7 @@ public:
 	TankFieldGridComponent& operator=(const TankFieldGridComponent& other) = delete;
 	TankFieldGridComponent& operator=(TankFieldGridComponent&& other) noexcept = delete;
 
-	char GetDirections(const glm::vec3& ) { return  right + left + up + down; }
+	char GetDirections(const glm::vec3&) { return  DIRECTION_RIGHT + DIRECTION_LEFT + DIRECTION_UP + DIRECTION_DOWN; }
 	void CreateLinesEven();
 	void CreateLinesFromFile();
 

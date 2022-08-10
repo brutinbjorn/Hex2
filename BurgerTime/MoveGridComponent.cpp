@@ -58,7 +58,7 @@ void MoveGridComponent::Initialize()
 
 			m_MovementRectangles.push_back(newRect);
 			auto papa = GetParent();
-			auto newZone = new MoveZoneComponent(newRect, left + right);
+			auto newZone = new MoveZoneComponent(newRect, DIRECTION_LEFT + DIRECTION_RIGHT);
 			newZone->SetDebugRender(true);
 			papa->AddComponent(newZone);
 			AddZone(newZone);
@@ -87,7 +87,7 @@ void MoveGridComponent::Initialize()
 
 			m_MovementRectangles.push_back(newRect);
 			auto papa = GetParent();
-			auto newZone = new MoveZoneComponent(newRect, up + down);
+			auto newZone = new MoveZoneComponent(newRect, DIRECTION_UP + DIRECTION_DOWN);
 			newZone->SetDebugRender(true);
 			papa->AddComponent(newZone);
 			AddZone(newZone);

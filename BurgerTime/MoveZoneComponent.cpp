@@ -21,20 +21,20 @@ char MoveZoneComponent::GetPossibleDirFromRect(const glm::vec2& pos) const
 	if(m_Rectangle.y < pos.y && m_Rectangle.y + m_Rectangle.h > pos.y)
 	{
 		if ((m_Rectangle.x < pos.x && m_Rectangle.x + m_Rectangle.w - 2 > pos.x)
-			&& (right & m_Directions))
-			returnVal += right;
+			&& (DIRECTION_RIGHT & m_Directions))
+			returnVal += DIRECTION_RIGHT;
 		if ((m_Rectangle.x + 2 < pos.x && m_Rectangle.x + m_Rectangle.w > pos.x)
-			&& (right & m_Directions))
-			returnVal += left;
+			&& (DIRECTION_RIGHT & m_Directions))
+			returnVal += DIRECTION_LEFT;
 	}
 	if (m_Rectangle.x < pos.x && m_Rectangle.x + m_Rectangle.w > pos.x)
 	{
 		if ((m_Rectangle.y + 2 < pos.y && m_Rectangle.y + m_Rectangle.h > pos.y)
-			&& (up & m_Directions))
-			returnVal += up;
+			&& (DIRECTION_UP & m_Directions))
+			returnVal += DIRECTION_UP;
 		if ((m_Rectangle.y  < pos.y && m_Rectangle.y + m_Rectangle.h - 2 > pos.y)
-			&& (down & m_Directions))
-			returnVal += down;
+			&& (DIRECTION_DOWN & m_Directions))
+			returnVal += DIRECTION_DOWN;
 
 	}
 	
@@ -47,9 +47,9 @@ void MoveZoneComponent::Render() const
 	if(m_DebugRender)
 	{
 		SDL_Color col;
-		if (m_Directions == left + right)
+		if (m_Directions == DIRECTION_LEFT + DIRECTION_RIGHT)
 			col.r = 255;
-		if (m_Directions == up + down)
+		if (m_Directions == DIRECTION_UP + DIRECTION_DOWN)
 			col.g = 255;
 
 		dae::Renderer::GetInstance().RenderRect(m_Rectangle,col);

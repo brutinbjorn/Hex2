@@ -57,6 +57,9 @@
     <ClCompile Include="TankGunComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
+    <ClCompile Include="TankFieldControlComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TankGameScene.h">
@@ -87,6 +90,9 @@
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
     <ClInclude Include="TankGunComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="TankFieldControlComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
   </ItemGroup>

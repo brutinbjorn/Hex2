@@ -19,14 +19,18 @@ TankGameScene::TankGameScene(const std::string& name)
 void TankGameScene::Initialize()
 {
 	// BackGround
-	std::shared_ptr<dae::GameObject> background = std::make_shared<dae::GameObject>();
-	auto bgImage = new RenderComponent();
-	bgImage->SetTexture("BackgroundTron.png");
-	auto size = bgImage->GetTextureSize();
-	bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
-	background->AddComponent(bgImage);
-	background->SetPosition(510,360);
-	AddGameObject(background);
+
+	std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameField("BackgroundTron.png", "TronFieldPathWalls.json");
+	AddGameObject(Field);
+	//std::shared_ptr<dae::GameObject> background = std::make_shared<dae::GameObject>();
+	//auto bgImage = new RenderComponent();
+	//bgImage->SetTexture("BackgroundTron.png");
+
+	//auto size = bgImage->GetTextureSize();
+	//bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
+	//background->AddComponent(bgImage);
+	//background->SetPosition(510,360);
+	//AddGameObject(background);
 
 
 

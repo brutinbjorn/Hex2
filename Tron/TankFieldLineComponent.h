@@ -9,6 +9,8 @@ class TankFieldLineComponent : public BaseComponent
 {
 public:
 	TankFieldLineComponent() = default;
+	TankFieldLineComponent(const SDL_Rect& MovementZone, char Directions, int OneDirOffset);
+
 	~TankFieldLineComponent() override = default;
 	TankFieldLineComponent(const TankFieldLineComponent& other) = delete;
 	TankFieldLineComponent(TankFieldLineComponent&& other) noexcept = delete;
@@ -27,9 +29,13 @@ public:
 
 	void SetSquare(const SDL_Rect& newZone)
 	{
+
 		auto newRect = newZone;
-		newRect.x = newZone.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
-		newRect.y = newZone.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
+		if(GetParent())
+		{
+			newRect.x = newZone.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
+			newRect.y = newZone.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
+		}
 		m_ZoneOfOverlap = newRect;
 	};
 

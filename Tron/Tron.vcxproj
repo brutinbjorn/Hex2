@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="TankCommands.cpp" />
     <ClCompile Include="TankControlComponent.cpp" />
+    <ClCompile Include="TankFieldControlComponent.cpp" />
     <ClCompile Include="TankFieldGridComponent.cpp" />
     <ClCompile Include="TankFieldLineComponent.cpp" />
     <ClCompile Include="TankGameScene.cpp" />
@@ -194,6 +195,7 @@
   <ItemGroup>
     <ClInclude Include="TankCommands.h" />
     <ClInclude Include="TankControlComponent.h" />
+    <ClInclude Include="TankFieldControlComponent.h" />
     <ClInclude Include="TankFieldGridComponent.h" />
     <ClInclude Include="TankFieldLineComponent.h" />
     <ClInclude Include="TankGameScene.h" />
