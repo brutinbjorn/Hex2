@@ -19,6 +19,9 @@ public:
 
 	void CreateLinesAndWallsFromJsonFile(const std::string& file,glm::ivec2 offset = {});
 
+	glm::ivec2 GetPlayerStartingPosition() const { return m_playerStartPos; };
+	glm::ivec2 GetEnemyStartPosition() const { return  m_EnemyStartPos; };
+
 	void Initialize() override {};
 	void FixedUpdate(const float ) override{};
 	void Update(const float ) override{};
@@ -32,5 +35,7 @@ private:
 	std::vector<TankFieldLineComponent*> nm_pLines;
 	int m_PathExtraSpace = 2;
 	glm::ivec2 m_Offset = {};
+	glm::ivec2 m_playerStartPos = {};
+	glm::ivec2 m_EnemyStartPos = {};
 };
 

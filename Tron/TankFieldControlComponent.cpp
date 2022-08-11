@@ -19,8 +19,8 @@
 			nlohmann::json ob = it.value();
 
 			glm::ivec2 position;
-			position.x = ob["x"].get<int>();
-			position.y = ob["y"].get<int>();
+			position.x = ob["x"].get<int>() + offset.x;
+			position.y = ob["y"].get<int>() + offset.y;
 
 			glm::ivec2 size;
 			size.x = ob["w"].get<int>();
@@ -43,8 +43,8 @@
 			nlohmann::json ob = it.value();
 
 			glm::ivec2 position;
-			position.x = ob["x"].get<int>();
-			position.y = ob["y"].get<int>();
+			position.x = ob["x"].get<int>() + offset.x;
+			position.y = ob["y"].get<int>() + offset.y;
 
 			glm::ivec2 size;
 			size.x = ob["w"].get<int>();
@@ -58,6 +58,26 @@
 			nm_pLines.push_back(Line);
 		}
 	}
+
+	nlohmann::json jOb = j["PlayerStartPos"];
+
+	glm::ivec2 PlayerStartPos;
+	if(jOb.is_object())
+	{
+		PlayerStartPos.x = jOb["x"].get<int>() + offset.x;
+		PlayerStartPos.y = jOb["y"].get<int>() + offset.y;
+
+	}
+	m_playerStartPos = PlayerStartPos;
+
+	jOb = j["EnemyStartPos"];
+	glm::ivec2 EnemyStartPos;
+	if(jOb.is_object())
+	{
+		EnemyStartPos.x = jOb["x"].get<int>() + offset.x;
+		EnemyStartPos.y = jOb["y"].get<int>() + offset.y;
+	}
+	m_EnemyStartPos = EnemyStartPos;
 
 
 }

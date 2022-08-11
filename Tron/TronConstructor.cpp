@@ -30,7 +30,7 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 
 }
 
-std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::string& BackgroundImg,const std::string& PathJsonFile)
+std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::string& BackgroundImg, const std::string& PathJsonFile)//, const glm::ivec2& PathOffset)
 {
 	auto field = std::make_shared<dae::GameObject>();
 
@@ -45,7 +45,7 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::strin
 
 	auto FieldControl = new TankFieldControlComponent();
 	field->AddComponent(FieldControl);
-	FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile);
+	FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile,glm::ivec2{ -(size.x / 2), -(size.y / 2) });
 
 
 
