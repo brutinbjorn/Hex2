@@ -20,9 +20,9 @@ public:
 	// returns the directions the actor can go to.
 	// INPUT position of actor;
 	// INOUT centerOfline, x or y pos depening if the line is horizontal/vertical, to Center the Actor on the line;
-	char GetPossibleDirFromRect(const glm::vec2& posOfActor, glm::vec2& CenterOfLine) const;
+	char GetPossibleDirFromRect(const glm::ivec2& posOfActor, glm::ivec2& CenterOfLine) const;
 
-	SDL_Rect GetOverlap() const { return m_ZoneOfOverlap; }
+	//char GetOverlap(glm::ivec3 position) const;
 
 	//adds left/right/up/down "only" extra border.
 	void SetZoneExtraBorder(int offset) { m_offset = offset; };

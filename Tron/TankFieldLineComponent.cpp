@@ -1,7 +1,8 @@
 #include "TankFieldLineComponent.h"
 
+#include "ENUMS.h"
 #include "Renderer.h"
-#include "TankFieldGridComponent.h"
+
 
 TankFieldLineComponent::TankFieldLineComponent(const SDL_Rect& MovementZone, char Directions, int OneDirOffset)
 	:m_ZoneOfOverlap(MovementZone),m_offset(OneDirOffset),m_Directions(Directions)
@@ -9,7 +10,7 @@ TankFieldLineComponent::TankFieldLineComponent(const SDL_Rect& MovementZone, cha
 	SetSquare(MovementZone);
 }
 
-char TankFieldLineComponent::GetPossibleDirFromRect(const glm::vec2& posOfActor, glm::vec2& CenterOfLine) const
+char TankFieldLineComponent::GetPossibleDirFromRect(const glm::ivec2& posOfActor, glm::ivec2& CenterOfLine) const
 {
 
 	char returnVal = 0;
@@ -18,6 +19,7 @@ char TankFieldLineComponent::GetPossibleDirFromRect(const glm::vec2& posOfActor,
 		if ((m_ZoneOfOverlap.x < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w - m_offset > posOfActor.x)
 			&& (DIRECTION_RIGHT & m_Directions))
 			returnVal += DIRECTION_RIGHT;
+
 		if ((m_ZoneOfOverlap.x + m_offset < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w > posOfActor.x)
 			&& (DIRECTION_RIGHT & m_Directions))
 			returnVal += DIRECTION_LEFT;
@@ -27,6 +29,7 @@ char TankFieldLineComponent::GetPossibleDirFromRect(const glm::vec2& posOfActor,
 		if ((m_ZoneOfOverlap.y + m_offset < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h > posOfActor.y)
 			&& (DIRECTION_UP & m_Directions))
 			returnVal += DIRECTION_UP;
+
 		if ((m_ZoneOfOverlap.y  < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h - m_offset > posOfActor.y)
 			&& (DIRECTION_DOWN & m_Directions))
 			returnVal += DIRECTION_DOWN;
@@ -35,8 +38,9 @@ char TankFieldLineComponent::GetPossibleDirFromRect(const glm::vec2& posOfActor,
 
 	CenterOfLine = m_CenterPosition;
 	return returnVal;
-	//return m_Directions;
 }
+
+
 
 void TankFieldLineComponent::Render() const
 {

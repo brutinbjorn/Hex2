@@ -42,9 +42,6 @@
     <ClCompile Include="TankControlComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
-    <ClCompile Include="TankFieldGridComponent.cpp">
-      <Filter>Source Files\TronComponents</Filter>
-    </ClCompile>
     <ClCompile Include="TankCommands.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
@@ -58,6 +55,15 @@
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
     <ClCompile Include="TankFieldControlComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="BouncingBulletComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,9 +86,6 @@
     <ClInclude Include="TankCommands.h">
       <Filter>Source Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="TankFieldGridComponent.h">
-      <Filter>Source Files\TronComponents</Filter>
-    </ClInclude>
     <ClInclude Include="WallComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
@@ -93,6 +96,18 @@
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
     <ClInclude Include="TankFieldControlComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ENUMS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BouncingBulletComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
   </ItemGroup>

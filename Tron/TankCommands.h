@@ -1,48 +1,61 @@
 #pragma once
 #include "Command.h"
+#include "ENUMS.h"
 #include "GameObject.h"
-#include "TankFieldGridComponent.h"
+#include "TankFieldControlComponent.h"
 #include "TankGunComponent.h"
+#include "TankFieldLineComponent.h"
 
-//enum Directions
-//{
-//	right = 0b0001,
-//	left = 0b0010,
-//	up = 0b0100,
-//	down = 0b1000
-//};
 
 class LimitedMoveCommand : public Command
 {
 public:
-	LimitedMoveCommand(dae::GameObject* actor, TankFieldGridComponent* grid, float xMove, float yMove)
+	LimitedMoveCommand(dae::GameObject* actor, TankFieldControlComponent* grid, float xMove, float yMove)
 		:m_pActor(actor), m_pGrid(grid), m_xMove(xMove), m_yMove(yMove) {};
 	~LimitedMoveCommand() override = default;
 
 	void Execute() override
 	{
-		char val = m_pGrid->GetDirections(m_pActor->GetTransform()->GetPosition());
+		glm::ivec2 centerPos;
+
+		/*
+		 *  RECONS: inverse the request?
+		 *	instead of asking all the lines where the player can move to, instead ask IF he can move in the REQUESTED DIRECTION.
+		 */
+
+		char val = m_pGrid->GetPossibleDirectionToMove(m_pActor->GetTransform()->GetPosition(),centerPos);
 		if (val != 0)
 		{
-
-			auto actor = m_pActor->GetComponent<ActorComponent>();
+			auto actor = m_pActor->GetTransform();
 			if ((DIRECTION_LEFT & val) && m_xMove < 0)
-				actor->MoveTranslate(m_xMove, 0);
+				actor->Translate(m_xMove, 0,0);
 			if ((DIRECTION_RIGHT & val) && m_xMove > 0)
-				actor->MoveTranslate(m_xMove, 0);
+				actor->Translate(m_xMove, 0,0);
 			if ((DIRECTION_UP & val) && m_yMove < 0)
-				actor->MoveTranslate(0, m_yMove);
+				actor->Translate(0, m_yMove,0);
 			if ((DIRECTION_DOWN & val) && m_yMove > 0)
-				actor->MoveTranslate(0, m_yMove);
+				actor->Translate(0, m_yMove,0);
 		}
 	};
 
 private:
 	dae::GameObject* m_pActor = nullptr;
-	TankFieldGridComponent* m_pGrid = nullptr;
+	TankFieldControlComponent* m_pGrid = nullptr;
 	float m_xMove = 0.f;
 	float m_yMove = 0.f;
 };
+class LimitedMoveCommandAlt : public Command
+{
+public:
+	LimitedMoveCommandAlt(char Direction, float x, float y) : m_direction(Direction), m_xMove(x), m_yMove(y) {};
+private:
+	char m_direction = 0;
+	float m_xMove = 0;
+	float m_yMove = 0;
+	 
+
+};
+
 
 class FreeMoveCommand : public Command
 {

@@ -5,6 +5,7 @@
 #include "WallComponent.h"
 #include "InputManager.h"
 #include "TankCommands.h"
+#include "TankFieldControlComponent.h"
 
 TankGameScene::TankGameScene(const std::string& name)
 	:Scene(name)
@@ -22,22 +23,16 @@ void TankGameScene::Initialize()
 
 	std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameField("BackgroundTron.png", "TronFieldPathWalls.json");
 	AddGameObject(Field);
-	//std::shared_ptr<dae::GameObject> background = std::make_shared<dae::GameObject>();
-	//auto bgImage = new RenderComponent();
-	//bgImage->SetTexture("BackgroundTron.png");
 
-	//auto size = bgImage->GetTextureSize();
-	//bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
-	//background->AddComponent(bgImage);
-	//background->SetPosition(510,360);
-	//AddGameObject(background);
+	auto fieldControl = Field->GetComponent<TankFieldControlComponent>();
 
-
+	auto TankStartPos = fieldControl->GetPlayerStartingPosition();
+	//auto EnemyStartPos = fieldControl->GetEnemyStartPosition();
 
 
 	// Tank Logic
 	std::shared_ptr<dae::GameObject> playerTank = TronConstructor::PlayerTank();
-	playerTank->GetTransform()->SetPosition(40, 40, 0);
+	playerTank->GetTransform()->SetPosition(static_cast<float>(TankStartPos.x),static_cast<float>(TankStartPos.y), 0);
 	AddGameObject(playerTank);
 
 
@@ -57,6 +52,28 @@ void TankGameScene::Initialize()
 
 
 	// Tank Body Input
+	dae::Action MoveDownLocked = dae::Action();
+	MoveDownLocked.key = SDL_SCANCODE_DOWN;
+	MoveDownLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl,0, 1);
+	dae::InputManager::GetInstance().AddAction(MoveDownLocked);
+
+	dae::Action MoveUpLocked = dae::Action();
+	MoveUpLocked.key = SDL_SCANCODE_UP;
+	MoveUpLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 0, -1);
+	dae::InputManager::GetInstance().AddAction(MoveUpLocked);
+
+	dae::Action MoveLeftLocked = dae::Action();
+	MoveLeftLocked.key = SDL_SCANCODE_LEFT;
+	MoveLeftLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, -1, 0);
+	dae::InputManager::GetInstance().AddAction(MoveLeftLocked);
+
+	dae::Action MoveRightLocked = dae::Action();
+	MoveRightLocked.key = SDL_SCANCODE_RIGHT;
+	MoveRightLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 1, 0);
+	dae::InputManager::GetInstance().AddAction(MoveRightLocked);
+
+
+#ifdef _DEBUG
 	dae::Action MoveDown = dae::Action();
 	MoveDown.key = SDL_SCANCODE_S;
 	MoveDown.pCommand = new FreeMoveCommand(playerTank.get(),0,-1);
@@ -76,6 +93,7 @@ void TankGameScene::Initialize()
 	MoveRight.key = SDL_SCANCODE_D;
 	MoveRight.pCommand = new FreeMoveCommand(playerTank.get(), 1, 0);
 	dae::InputManager::GetInstance().AddAction(MoveRight);
+#endif
 
 
 

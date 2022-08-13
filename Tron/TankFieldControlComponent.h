@@ -16,11 +16,12 @@ public:
 	TankFieldControlComponent& operator=(const TankFieldControlComponent& other) = delete;
 	TankFieldControlComponent& operator=(TankFieldControlComponent&& other) noexcept = delete;
 
+	char GetPossibleDirectionToMove(const glm::ivec3& position, glm::ivec2& CenterPosOfLine) const;
 
 	void CreateLinesAndWallsFromJsonFile(const std::string& file,glm::ivec2 offset = {});
 
 	glm::ivec2 GetPlayerStartingPosition() const { return m_playerStartPos; };
-	glm::ivec2 GetEnemyStartPosition() const { return  m_EnemyStartPos; };
+	glm::ivec2 GetEnemyStartPosition() const { return m_EnemyStartPos; };
 
 	void Initialize() override {};
 	void FixedUpdate(const float ) override{};

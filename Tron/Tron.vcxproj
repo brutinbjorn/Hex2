@@ -179,10 +179,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BouncingBulletComponent.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="TankCommands.cpp" />
     <ClCompile Include="TankControlComponent.cpp" />
     <ClCompile Include="TankFieldControlComponent.cpp" />
-    <ClCompile Include="TankFieldGridComponent.cpp" />
     <ClCompile Include="TankFieldLineComponent.cpp" />
     <ClCompile Include="TankGameScene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
@@ -191,12 +192,15 @@
     <ClCompile Include="TronConstructor.cpp" />
     <ClCompile Include="TronEngine.cpp" />
     <ClCompile Include="WallComponent.cpp" />
+    <ClCompile Include="Wrappers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BouncingBulletComponent.h" />
+    <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="ENUMS.h" />
     <ClInclude Include="TankCommands.h" />
     <ClInclude Include="TankControlComponent.h" />
     <ClInclude Include="TankFieldControlComponent.h" />
-    <ClInclude Include="TankFieldGridComponent.h" />
     <ClInclude Include="TankFieldLineComponent.h" />
     <ClInclude Include="TankGameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -204,6 +208,7 @@
     <ClInclude Include="TronConstructor.h" />
     <ClInclude Include="TronEngine.h" />
     <ClInclude Include="WallComponent.h" />
+    <ClInclude Include="Wrappers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

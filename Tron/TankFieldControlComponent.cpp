@@ -1,19 +1,34 @@
  #include "TankFieldControlComponent.h"
 
 #include <nlohmann/json.hpp>
-#include "JsonManager.h"
-#include "TankFieldGridComponent.h"
 
- void TankFieldControlComponent::CreateLinesAndWallsFromJsonFile(const std::string& file, glm::ivec2 offset)
+#include "ENUMS.h"
+#include "JsonManager.h"
+
+
+char TankFieldControlComponent::GetPossibleDirectionToMove(const glm::ivec3& position, glm::ivec2& CenterPosOfLine) const
+{
+	char possibleDirections = 0;
+	//glm::ivec2 playerPos = {position.x,position.y};
+	for(int i = 0; i < nm_pLines.size();i++)
+	{
+		auto dir = nm_pLines[i]->GetPossibleDirFromRect(position, CenterPosOfLine);
+
+		if (dir != 0)
+			possibleDirections += dir;
+	}
+	return possibleDirections;
+}
+
+
+void TankFieldControlComponent::CreateLinesAndWallsFromJsonFile(const std::string& file, glm::ivec2 offset)
 {
 	nlohmann::json j = JsonManager::GetInstance().LoadJsonDoc(file);
 	nlohmann::json jAr = j["PathsHorizontal"];
 	//CreatePaths(jAr);
 	for (nlohmann::json::iterator it = jAr.begin(); it != jAr.end(); ++it)
 	{
-		//nlohmann::json jPoints = it.value()["Bazier"];
-		//std::vector<glm::vec2> NewBazierPoints;
-		//for (nlohmann::json::iterator it2 = jPoints.begin(); it2 != jPoints.end(); ++it2)
+
 		if (it->is_object())
 		{
 			nlohmann::json ob = it.value();
@@ -64,18 +79,20 @@
 	glm::ivec2 PlayerStartPos;
 	if(jOb.is_object())
 	{
-		PlayerStartPos.x = jOb["x"].get<int>() + offset.x;
-		PlayerStartPos.y = jOb["y"].get<int>() + offset.y;
+		PlayerStartPos.x = jOb["x"].get<int>() + offset.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
+		PlayerStartPos.y = jOb["y"].get<int>() + offset.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
 
 	}
+
 	m_playerStartPos = PlayerStartPos;
 
 	jOb = j["EnemyStartPos"];
 	glm::ivec2 EnemyStartPos;
+
 	if(jOb.is_object())
 	{
-		EnemyStartPos.x = jOb["x"].get<int>() + offset.x;
-		EnemyStartPos.y = jOb["y"].get<int>() + offset.y;
+		EnemyStartPos.x = jOb["x"].get<int>() + offset.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
+		EnemyStartPos.y = jOb["y"].get<int>() + offset.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
 	}
 	m_EnemyStartPos = EnemyStartPos;
 

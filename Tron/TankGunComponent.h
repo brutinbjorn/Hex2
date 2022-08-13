@@ -1,9 +1,12 @@
 #pragma once
 #include "ComponentList.h"
+#include "Scene.h"
+
 class TankGunComponent : public BaseComponent
 {
 public:
-	TankGunComponent() = default;
+	//TankGunComponent() = default;
+	TankGunComponent(dae::Scene* activeScene) :nm_pScene(activeScene) {};
 	~TankGunComponent() override = default;
 	TankGunComponent(const TankGunComponent& other) = delete;
 	TankGunComponent(TankGunComponent&& other) noexcept = delete;
@@ -26,7 +29,7 @@ public:
 	};
 
 private:
-
+	dae::Scene* nm_pScene;
 	RenderComponent* nm_pRenderComponent = nullptr;
 
 	float m_FireDelay = 1;

@@ -1,22 +1,29 @@
 #include "TronConstructor.h"
+
+#include "BouncingBulletComponent.h"
 #include "ComponentList.h"
 #include "TankControlComponent.h"
 #include "TankFieldControlComponent.h"
-#include "TankFieldGridComponent.h"
+
 #include "TankGunComponent.h"
 
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 {
 	auto tank = std::make_shared<dae::GameObject>();
 
+	//The Body
 	auto BodyRender = new RenderComponent();
 	tank->AddComponent(BodyRender);
 	BodyRender->SetTexture("TankRedVert.jpg");
+	BodyRender->SetOffset(-16, -16);
+	//auto Hitbox = new HitBoxComponent();
 
+	//The Gun
 	auto GunRender = new RenderComponent();
 	tank->AddComponent(GunRender);
 	GunRender->SetTexture("TankCannonRed.png");
-	GunRender->SetOffset(-7, 10);
+	GunRender->SetOffset(-(8), -(23));
+	GunRender->SetRotationPoint(SDL_Point{ 8,23 });
 
 	auto GunLogic = new TankGunComponent();
 	GunLogic->LinkGunTexture(GunRender);
@@ -49,16 +56,15 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::strin
 
 
 
-	//AddGameObject(background);
-	//former---<//
-	//auto BackGround = new RenderComponent();
-	//BackGround->SetTexture(BackgroundImg);
-	//field->AddComponent(BackGround);
-	//auto FieldLogic = new TankFieldGridComponent();
-	//Fie
-
-
-
-
 	return field;
+}
+
+std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
+{
+	auto Bullet = std::make_shared<dae::GameObject>();
+	auto BulletLogic = new BouncingBulletComponent();
+
+
+	return Bullet;
+
 }

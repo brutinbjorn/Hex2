@@ -14,7 +14,7 @@ public:
 	TankControlComponent(TankControlComponent&& other) noexcept = delete;
 	TankControlComponent& operator=(const TankControlComponent& other) = delete;
 	TankControlComponent& operator=(TankControlComponent&& other) noexcept = delete;
-
+ 
 	void Initialize() override {}
 	void FixedUpdate(const float)  override {}
 	void Update(const float ) override;
