@@ -24,6 +24,9 @@ namespace dae
 		//Render the objects.
 		void Render() const;
 
+		bool IsActive() { return m_IsActive; };
+		bool SetActive(bool active = true) { m_IsActive = active; };
+
 		std::string GetName() { return m_Name; };
 
 		virtual ~Scene();
@@ -34,6 +37,7 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 	protected:
+		bool m_IsActive = false;
 		std::string m_Name;
 		std::vector <std::shared_ptr<GameObject>> m_Objects{};
 

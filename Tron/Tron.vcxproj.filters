@@ -66,6 +66,9 @@
     <ClCompile Include="CollisionComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
+    <ClCompile Include="SquareComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TankGameScene.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="SquareComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
   </ItemGroup>

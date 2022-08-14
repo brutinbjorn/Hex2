@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "Singleton.h"
 
 class CollisionComponent;
@@ -8,17 +10,21 @@ namespace dae
 	class CollisionManager final : public Singleton<CollisionManager>
 	{
 	public:
-
 		void AddCollisionComp(CollisionComponent* toAdd) { nm_pCollisionList.push_back(toAdd); }
 		void RemoveCollisionComp(CollisionComponent* toRemove)
 		{
 			auto element = std::find(nm_pCollisionList.begin(), nm_pCollisionList.end(), toRemove);
-			if(element != nm_pCollisionList.end())
+			if (element != nm_pCollisionList.end())
 				nm_pCollisionList.erase(element);
-		}
+		};
+
+		const std::vector<CollisionComponent*>& GetAllCollisionBoxes() { return nm_pCollisionList; }
+
+
 	private:
 		friend class Singleton<CollisionManager>;
 		CollisionManager() = default;
+		~CollisionManager() override = default;
 		std::vector<CollisionComponent*> nm_pCollisionList;
 	};
 }

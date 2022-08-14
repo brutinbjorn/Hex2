@@ -13,8 +13,8 @@ void TankGunComponent::ShootGun()
 {
 	if(M_FireDelayDelta <= 0)
 	{
-		TronConstructor::PlayerTank();
-		nm_pScene->AddGameObject()
+		auto bullet = TronConstructor::PlayerBullet(m_Angle);
+		nm_pScene->AddGameObject(bullet);
 		//dae::SceneManager::GetInstance().GetScene()->AddGameObject();
 		std::cout << "should spawn bullet" << std::endl;
 

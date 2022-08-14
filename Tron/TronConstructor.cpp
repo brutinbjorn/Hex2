@@ -1,6 +1,7 @@
 #include "TronConstructor.h"
 
 #include "BouncingBulletComponent.h"
+#include "CollisionComponent.h"
 #include "ComponentList.h"
 #include "TankControlComponent.h"
 #include "TankFieldControlComponent.h"
@@ -25,7 +26,9 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	GunRender->SetOffset(-(8), -(23));
 	GunRender->SetRotationPoint(SDL_Point{ 8,23 });
 
-	auto GunLogic = new TankGunComponent();
+	auto scene = dae::SceneManager::GetInstance().GetScene("TankScene");
+
+	auto GunLogic = new TankGunComponent(scene);
 	GunLogic->LinkGunTexture(GunRender);
 	tank->AddComponent(GunLogic);
 
@@ -61,10 +64,23 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::strin
 
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 {
-	auto Bullet = std::make_shared<dae::GameObject>();
-	auto BulletLogic = new BouncingBulletComponent();
+	auto bullet = std::make_shared<dae::GameObject>();
+	auto bulletLogic = new BouncingBulletComponent(Rotation);
+	bullet->AddComponent(bulletLogic);
+
+	auto bulletImg = new RenderComponent();
+	bulletImg->SetTexture("BulletPlayer.png");
+	bulletImg->EnableOffset(true);
+	bulletImg->SetOffset(-16, 16);
+	bullet->AddComponent(bulletImg);
+
+	auto BulletCol = new CollisionComponent();
+	bullet->AddComponent(BulletCol);
+	BulletCol->SetRect({-8,-8,8,8});
 
 
-	return Bullet;
+
+
+	return bullet;
 
 }
