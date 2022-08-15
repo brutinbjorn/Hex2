@@ -2,11 +2,13 @@
 
 #include <nlohmann/json.hpp>
 
+#include "CollisionComponent.h"
 #include "ENUMS.h"
 #include "JsonManager.h"
+#include "SquareComponent.h"
 
 
-char TankFieldControlComponent::GetPossibleDirectionToMove(const glm::ivec3& position, glm::ivec2& CenterPosOfLine) const
+ char TankFieldControlComponent::GetPossibleDirectionToMove(const glm::ivec3& position, glm::ivec2& CenterPosOfLine) const
 {
 	char possibleDirections = 0;
 	//glm::ivec2 playerPos = {position.x,position.y};
@@ -74,6 +76,35 @@ void TankFieldControlComponent::CreateLinesAndWallsFromJsonFile(const std::strin
 		}
 	}
 
+	jAr = j["Wall"];
+	for (nlohmann::json::iterator it = jAr.begin(); it != jAr.end(); ++it)
+	{
+		if (it->is_object())
+		{
+			nlohmann::json ob = it.value();
+
+			glm::ivec2 position;
+			position.x = ob["x"].get<int>() + offset.x;
+			position.y = ob["y"].get<int>() + offset.y;
+
+			glm::ivec2 size;
+			size.x = ob["w"].get<int>();
+			size.y = ob["h"].get<int>();
+
+			SDL_Rect Path = SDL_Rect{ position.x ,position.y,size.x, size.y };
+
+			//auto Line = new TankFieldLineComponent(Path, 2);
+			auto Square = new SquareComponent();
+			Square->SetSquare(Path);
+			GetParent()->AddComponent(Square);
+			auto wall = new CollisionComponent(Square);
+			GetParent()->AddComponent(wall);
+
+		}
+	}
+
+
+
 	nlohmann::json jOb = j["PlayerStartPos"];
 
 	glm::ivec2 PlayerStartPos;
@@ -98,3 +129,4 @@ void TankFieldControlComponent::CreateLinesAndWallsFromJsonFile(const std::strin
 
 
 }
+

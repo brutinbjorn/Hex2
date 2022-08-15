@@ -3,6 +3,7 @@
 #include <SDL.h>
 
 #include "GameObject.h"
+#include "Renderer.h"
 
 class SquareComponent :
     public BaseComponent
@@ -27,19 +28,23 @@ public:
 		}
 	};
 	void LateUpdate(const float) override {};
-	void Render() const override ;
+
+	void Render() const override
+	{
+		dae::Renderer::GetInstance().RenderRect(m_RectWorld);
+	}
 
 	void SetSquare(const SDL_Rect& Rect) 
 	{
-
-		auto newRect = Rect;
+		m_rect = Rect;
 		if (GetParent())
 		{
-			newRect.x = Rect.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
-			newRect.y = Rect.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
+			m_RectWorld = m_rect;
+			m_RectWorld.x = Rect.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
+			m_RectWorld.y = Rect.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
 		}
-		m_rect = newRect;
 	};
+
 
 	const SDL_Rect& GetSquareRelative() const { return m_RectWorld; };
 	const SDL_Rect& GetSquareWorld() const { return m_rect; };

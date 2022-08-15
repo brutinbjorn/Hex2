@@ -32,7 +32,8 @@ public:
 
 
 private:
-	
+	//void CreateWalls();
+
 	std::vector<TankFieldLineComponent*> nm_pLines;
 	int m_PathExtraSpace = 2;
 	glm::ivec2 m_Offset = {};

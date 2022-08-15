@@ -3,7 +3,6 @@
 TankControlComponent::TankControlComponent(RenderComponent* body, RenderComponent* gun)
 	:m_npBodysprite(body), m_npGunSprite(gun)
 {
-
 }
 
 void TankControlComponent::Update(const float )

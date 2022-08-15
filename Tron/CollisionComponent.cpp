@@ -3,22 +3,22 @@
 
 #include "CollisionManager.h"
 #include "GameObject.h"
+#include "SquareComponent.h"
 #include "Wrappers.h"
 
 void CollisionComponent::Update(const float)
 {
-
 	auto currentPos = GetParent()->GetTransform();
 	if(m_formerPosition.GetPosition() != currentPos->GetPosition())
 	{
+		auto sqrWorld = nm_pSquare->GetSquareWorld();
 		auto Others = dae::CollisionManager::GetInstance().GetAllCollisionBoxes();
 		for (int index = 0; index < Others.size(); ++index)
 		{
 			if (Others[index] != this)
 			{
-				auto otherRec = Others[index]->GetRect();
-				auto dir = IsRectsOverLapping(m_rect, otherRec);
-
+				auto otherRec = Others[index]->GetSquareUsedForColission()->GetSquareWorld();
+				auto dir = IsRectsOverLapping(sqrWorld, otherRec);
 				if (dir)
 				{
 					m_direction += dir;
@@ -26,10 +26,7 @@ void CollisionComponent::Update(const float)
 				}
 			}
 		}
-
-
 	}
-
 }
 
 char CollisionComponent::IsRectsOverLapping(SDL_Rect a, SDL_Rect b)

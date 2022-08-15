@@ -3,6 +3,7 @@
 #include "BouncingBulletComponent.h"
 #include "CollisionComponent.h"
 #include "ComponentList.h"
+#include "SquareComponent.h"
 #include "TankControlComponent.h"
 #include "TankFieldControlComponent.h"
 
@@ -74,9 +75,12 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 	bulletImg->SetOffset(-16, 16);
 	bullet->AddComponent(bulletImg);
 
-	auto BulletCol = new CollisionComponent();
+
+	auto BulletSquare = new SquareComponent();
+	bullet->AddComponent(BulletSquare);
+	auto BulletCol = new CollisionComponent(BulletSquare);
 	bullet->AddComponent(BulletCol);
-	BulletCol->SetRect({-8,-8,8,8});
+	//BulletCol->SetRect({-8,-8,8,8});
 
 
 

@@ -2,6 +2,8 @@
 #include "BaseComponent.h"
 #include <glm/glm.hpp>
 #include <SDL.h>
+class SquareComponent;
+
 class HitboxComponent :
     public BaseComponent
 {
@@ -33,12 +35,15 @@ public:
 
 	const SDL_Rect& GetRectangle() const { return m_rect; };
 
+	//void Set
+
 	bool IsPointInThisHitbox(glm::ivec2 point) const;
 	bool IsSquareInThisHitBox(SDL_Rect rectangle, int CollisionID);
 
 
 private:
 	SDL_Rect m_rect;
+	SquareComponent* nm_pSquareComp;
 	glm::ivec2 m_offset;
 	glm::ivec2 m_size;
 	
