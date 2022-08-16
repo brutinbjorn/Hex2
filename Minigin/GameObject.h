@@ -37,6 +37,7 @@ namespace dae
 		T* GetComponent();
 		void AddComponent(BaseComponent* ToAdd);
 
+		void SetMarkForDeletion(bool mark = true) { m_MarkForDeletion = true; }
 
 		//REDUNDENT send function, cleanup, change or remove.
 

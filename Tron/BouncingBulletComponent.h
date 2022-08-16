@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include <HitboxComponent.h>
 //#include <iostream>
+#include "CollisionComponent.h"
 #include "math.h"
 
 #include "CollisionManager.h"
@@ -14,7 +15,7 @@ class BouncingBulletComponent :
 {
 public:
 	BouncingBulletComponent() = default;
-	BouncingBulletComponent(float rotation)
+	BouncingBulletComponent(float rotation,CollisionComponent* collision)
 	{
 		m_Vector.x = std::cos(rotation);
 		m_Vector.y = std::sin(rotation);
@@ -28,17 +29,14 @@ public:
 
 	void Initialize() override {}
 	void FixedUpdate(const float) override {}
-	void Update(const float) override
-	{
-		GetParent()->GetTransform()->Translate(m_Vector.x * m_speed,m_Vector.y, 0);
-	}
+	void Update(const float) override;
 	void LateUpdate(const float) override {}
 	void Render() const override {}
 
 private:
 
 	HitboxComponent* nm_pHitbox = nullptr; // hitbox
-	CollisionComponent* nm_pCOllisionBox = nullptr;
+	CollisionComponent* nm_pCollisionBox = nullptr;
 
 	glm::vec2 m_Vector;
 	float m_speed = 2;

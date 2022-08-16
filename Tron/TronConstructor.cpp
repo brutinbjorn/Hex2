@@ -66,8 +66,6 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::strin
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 {
 	auto bullet = std::make_shared<dae::GameObject>();
-	auto bulletLogic = new BouncingBulletComponent(Rotation);
-	bullet->AddComponent(bulletLogic);
 
 	auto bulletImg = new RenderComponent();
 	bulletImg->SetTexture("BulletPlayer.png");
@@ -75,13 +73,14 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 	bulletImg->SetOffset(-16, 16);
 	bullet->AddComponent(bulletImg);
 
-
 	auto BulletSquare = new SquareComponent();
+	BulletSquare->SetSquare({ -5,-5,10,10 });
 	bullet->AddComponent(BulletSquare);
 	auto BulletCol = new CollisionComponent(BulletSquare);
 	bullet->AddComponent(BulletCol);
-	//BulletCol->SetRect({-8,-8,8,8});
 
+	auto bulletLogic = new BouncingBulletComponent(Rotation,BulletCol);
+	bullet->AddComponent(bulletLogic);
 
 
 

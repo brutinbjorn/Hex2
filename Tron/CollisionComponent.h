@@ -30,6 +30,9 @@ public:
 	SquareComponent* GetSquareUsedForColission() const { return nm_pSquare; };
 	void SetSquareForColission(SquareComponent* square) { nm_pSquare = square; };
 
+	bool IsColliding() { return m_IsTouching; };
+	char GetCollisionSides() { return m_direction; };
+
 private:
 	static char IsRectsOverLapping(SDL_Rect a, SDL_Rect b);
 

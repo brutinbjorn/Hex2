@@ -255,6 +255,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="HealthBarComponent.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="HitboxManager.h" />
+    <ClInclude Include="HurtBoxComponent.h" />
     <ClInclude Include="JsonManager.h" />
     <ClInclude Include="ObjectConstructor.h" />
     <ClInclude Include="Observer.h" />
@@ -343,6 +344,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="HealthBarComponent.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="HitboxManager.cpp" />
+    <ClCompile Include="HurtBoxComponent.cpp" />
     <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="ObjectConstructor.cpp" />
     <ClCompile Include="Observer.cpp" />
