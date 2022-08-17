@@ -13,7 +13,17 @@ HurtBoxComponent::HurtBoxComponent(SquareComponent* Sqr, int CollisionID)
 
 }
 
-bool HurtBoxComponent::IsOverlappingHitbox(HitboxComponent* hitbox)
+void HurtBoxComponent::Update(const float )
+{
+	//IsOverlappingHitbox(nullptr);
+
+}
+
+void HurtBoxComponent::Render() const
+{
+}
+
+bool HurtBoxComponent::IsOverlappingHitbox(HitboxComponent* GetHitBox)
 {
 	m_hasHit = false;
 
@@ -22,9 +32,12 @@ bool HurtBoxComponent::IsOverlappingHitbox(HitboxComponent* hitbox)
 	{
 		if (vectorRef[i]->IsSquareInThisHitBox(nm_pRect->GetSquareWorld(), m_ColisionID))
 		{
-			//std::cout << "hurtbox is overlapping hitbox" << std::endl;
+			GetHitBox = vectorRef[i];
 			m_hasHit = true;
-
+			return true;
 		}
 	}
+	return true;
 }
+
+

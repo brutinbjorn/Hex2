@@ -3,19 +3,19 @@
 #include <glm/glm.hpp>
 
 #include "GameObject.h"
-#include <HitboxComponent.h>
 //#include <iostream>
 #include "CollisionComponent.h"
 #include "math.h"
 
 #include "CollisionManager.h"
+#include "HurtBoxComponent.h"
 
 class BouncingBulletComponent :
     public BaseComponent
 {
 public:
 	BouncingBulletComponent() = default;
-	BouncingBulletComponent(float rotation,CollisionComponent* collision)
+	BouncingBulletComponent(float rotation,CollisionComponent* collision, HurtBoxComponent* hurtBox):nm_pCollisionBox(collision),nm_pHurtBox(hurtBox)
 	{
 		m_Vector.x = std::cos(rotation);
 		m_Vector.y = std::sin(rotation);
@@ -35,7 +35,8 @@ public:
 
 private:
 
-	HitboxComponent* nm_pHitbox = nullptr; // hitbox
+	//HitboxComponent* nm_pHitbox = nullptr; // hitbox
+	HurtBoxComponent* nm_pHurtBox = nullptr;
 	CollisionComponent* nm_pCollisionBox = nullptr;
 
 	glm::vec2 m_Vector;

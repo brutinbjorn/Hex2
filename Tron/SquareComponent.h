@@ -1,12 +1,13 @@
 #pragma once
-#include <BaseComponent.h>
-#include <SDL.h>
 
+#include <SDL.h>
+#include <glm/detail/type_vec.hpp>
+
+#include "BaseComponent.h"
 #include "GameObject.h"
 #include "Renderer.h"
 
-class SquareComponent :
-    public BaseComponent
+class SquareComponent :public BaseComponent
 {
 public:
 	SquareComponent() = default;

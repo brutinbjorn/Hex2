@@ -63,10 +63,16 @@
     <ClCompile Include="Wrappers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionComponent.cpp">
+    <ClCompile Include="EnemyTankComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySightComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
     <ClCompile Include="SquareComponent.cpp">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
       <Filter>Source Files\TronComponents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,10 +116,16 @@
     <ClInclude Include="Wrappers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionComponent.h">
+    <ClInclude Include="EnemyTankComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySightComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
     <ClInclude Include="SquareComponent.h">
+      <Filter>Source Files\TronComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
   </ItemGroup>

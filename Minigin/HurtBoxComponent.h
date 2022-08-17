@@ -9,16 +9,17 @@ class HurtBoxComponent :
 public:
 	HurtBoxComponent(SquareComponent* Sqr, int CollisionID = -1);
 
-	void Render() const override;
+
+	void Initialize() override;
+	void FixedUpdate(const float ) override {};
 	void Update(const float deltatime) override;
+	void LateUpdate(const float ) override {};
+	void Render() const override ;
+	
 	void SetSquareComp(SquareComponent* newRect) { nm_pRect = newRect; };
 
 
-	void SetOffset(int x, int y);
-	void SetPosition(float x, float y, float z);
-	void SetPosition(glm::vec3 pos);
-	void SetSize(glm::ivec2 size);
-	bool IsOverlappingHitbox(HitboxComponent* hitbox);
+	bool IsOverlappingHitbox(HitboxComponent* GetHitBox);
 	bool IsAHit() const { return m_hasHit; }
 
 private:
@@ -26,6 +27,8 @@ private:
 	glm::ivec2 m_offset;
 	glm::ivec2 m_size;
 	dae::Transform m_transform;
+
+	bool m_debugRender;
 
 	int m_ColisionID = -1;
 	bool m_NeedsUpdate = false;

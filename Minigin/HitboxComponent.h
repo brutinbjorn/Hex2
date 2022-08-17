@@ -9,7 +9,8 @@ class HitboxComponent :
 {
 public:
 	// creates the hitboxs and centers it.
-	HitboxComponent(const glm::ivec2& pos, const glm::ivec2& size, int CollisionID = -1);
+	HitboxComponent(SquareComponent* sqr ,int CollisionID = -1);
+
 
 	~HitboxComponent() override = default;
 	HitboxComponent(const HitboxComponent& other) = delete;
@@ -24,22 +25,23 @@ public:
 	void GuiRender() const override {};
 	void Update(const float) override ;
 
-	void SetRect(const SDL_Rect& newRect) { m_rect = newRect; };
+	//void SetRect(const SDL_Rect& newRect) { m_rect = newRect; };
 
-	void SetOffset(int x, int y) { m_offset.x = x; m_offset.y = y; m_NeedsUpdate = true; };
+	//void SetOffset(int x, int y) { m_offset.x = x; m_offset.y = y; m_NeedsUpdate = true; };
 
-	void SetSize(glm::ivec2 size) { m_size = size;  m_NeedsUpdate = true; };
+	//void SetSize(glm::ivec2 size) { m_size = size;  m_NeedsUpdate = true; };
 
 	bool IsHit() { return m_gotHit; };
 	void ResetHit(bool HitState = false) { m_gotHit = HitState; };
 
-	const SDL_Rect& GetRectangle() const { return m_rect; };
+	//const SDL_Rect& GetRectangle() const { return m_rect; };
 
 	//void Set
+	dae::GameObject* GetParent();
 
 	bool IsPointInThisHitbox(glm::ivec2 point) const;
 	bool IsSquareInThisHitBox(SDL_Rect rectangle, int CollisionID);
-
+	bool IsSquareInThisHitBox(SquareComponent* sqr, int CollisionID);
 
 private:
 	SDL_Rect m_rect;

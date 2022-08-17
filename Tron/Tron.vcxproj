@@ -181,6 +181,8 @@
   <ItemGroup>
     <ClCompile Include="BouncingBulletComponent.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
+    <ClCompile Include="EnemySightComponent.cpp" />
+    <ClCompile Include="EnemyTankComponent.cpp" />
     <ClCompile Include="SquareComponent.cpp" />
     <ClCompile Include="TankCommands.cpp" />
     <ClCompile Include="TankControlComponent.cpp" />
@@ -198,6 +200,8 @@
   <ItemGroup>
     <ClInclude Include="BouncingBulletComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="EnemySightComponent.h" />
+    <ClInclude Include="EnemyTankComponent.h" />
     <ClInclude Include="ENUMS.h" />
     <ClInclude Include="SquareComponent.h" />
     <ClInclude Include="TankCommands.h" />

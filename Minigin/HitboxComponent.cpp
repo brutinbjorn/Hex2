@@ -3,13 +3,19 @@
 
 #include "GameObject.h"
 #include "Renderer.h"
+#include "../Tron/SquareComponent.h"
 
-HitboxComponent::HitboxComponent(const glm::ivec2& pos, const glm::ivec2& size, int CollisionID)
-	:m_rect(SDL_Rect(pos.x, pos.y, size.x, size.y))
-	, m_CollisionID(CollisionID)
+//HitboxComponent::HitboxComponent(const glm::ivec2& pos, const glm::ivec2& size, int CollisionID)
+//	:m_rect(SDL_Rect(pos.x, pos.y, size.x, size.y))
+//	, m_CollisionID(CollisionID)
+//{
+//
+//}
+
+HitboxComponent::HitboxComponent(SquareComponent* sqr, int CollisionID)
+	: nm_pSquareComp(sqr), m_CollisionID(CollisionID)
 {
-
-} 
+}
 
 void HitboxComponent::Render() const
 {
@@ -18,11 +24,17 @@ void HitboxComponent::Render() const
 
 void HitboxComponent::Update(const float)
 {
-	glm::ivec3 pos = GetParent()->GetTransform()->GetPosition();
+	//glm::ivec3 pos = GetParent()->GetTransform()->GetPosition();
 
-	m_rect.x = pos.x;
-	m_rect.y = pos.y;
+	//m_rect.x = pos.x;
+	//m_rect.y = pos.y;
+	m_rect = nm_pSquareComp->GetSquareWorld();
 	
+}
+
+dae::GameObject* HitboxComponent::GetParent()
+{
+	return GetParent();
 }
 
 bool HitboxComponent::IsPointInThisHitbox(glm::ivec2 point) const
@@ -54,6 +66,8 @@ bool HitboxComponent::IsSquareInThisHitBox(SDL_Rect rectangle, int CollisionID)
 		m_gotHit = false;
 		return false;
 	}
+	m_rect = nm_pSquareComp->GetSquareWorld();
+
 
 	glm::ivec2 Cube1TL = glm::ivec2(m_rect.x,m_rect.y);
 	glm::ivec2 Cube1BR = glm::ivec2(m_rect.x, m_rect.y) + glm::ivec2(m_rect.w, m_rect.h);
@@ -69,4 +83,9 @@ bool HitboxComponent::IsSquareInThisHitBox(SDL_Rect rectangle, int CollisionID)
 
 	m_gotHit = false;
 	return false;
+}
+
+bool HitboxComponent::IsSquareInThisHitBox(SquareComponent* sqr, int CollisionID)
+{
+	return IsSquareInThisHitBox(sqr->GetSquareWorld(), CollisionID);
 }

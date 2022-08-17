@@ -4,6 +4,23 @@ void BouncingBulletComponent::Update(const float)
 {
 	GetParent()->GetTransform()->Translate(m_Vector.x * m_speed,m_Vector.y, 0);
 
+
+	if(nm_pHurtBox)
+	{
+		HitboxComponent* hit = nullptr;
+		bool HasHit = nm_pHurtBox->IsOverlappingHitbox(hit);
+		if (hit)
+		{
+		};
+		/*if(hit) {
+			auto p = hit->GetParent()->GetComponent<>();
+			p.
+		}*/
+
+	}
+
+
+
 	if (nm_pCollisionBox->IsColliding())
 	{
 		char dir = nm_pCollisionBox->GetCollisionSides();

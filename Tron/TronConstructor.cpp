@@ -3,6 +3,8 @@
 #include "BouncingBulletComponent.h"
 #include "CollisionComponent.h"
 #include "ComponentList.h"
+#include "EnemyTankComponent.h"
+#include "HurtBoxComponent.h"
 #include "SquareComponent.h"
 #include "TankControlComponent.h"
 #include "TankFieldControlComponent.h"
@@ -79,11 +81,48 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 	auto BulletCol = new CollisionComponent(BulletSquare);
 	bullet->AddComponent(BulletCol);
 
-	auto bulletLogic = new BouncingBulletComponent(Rotation,BulletCol);
+
+	auto BulletHurtBoxComponent = new HurtBoxComponent(BulletSquare);
+	bullet->AddComponent(BulletHurtBoxComponent);
+
+	auto bulletLogic = new BouncingBulletComponent(Rotation,BulletCol,BulletHurtBoxComponent);
 	bullet->AddComponent(bulletLogic);
-
-
 
 	return bullet;
 
 }
+
+std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
+{
+	auto EnemyTank = std::make_shared<dae::GameObject>();
+
+	//The Body
+	auto BodyRender = new RenderComponent();
+	EnemyTank->AddComponent(BodyRender);
+	BodyRender->SetTexture("TankBlueVert.jpg");
+	BodyRender->SetOffset(-16, -16);
+	//auto Hitbox = new HitBoxComponent();
+
+	auto Sqr = new SquareComponent();
+	Sqr->SetSquare({ -16,-16,32,32 });
+	EnemyTank->AddComponent(Sqr);
+
+	auto Hitbox = new HitboxComponent(Sqr,1);
+	EnemyTank->AddComponent(Hitbox);
+
+
+	auto SightSqr = new SquareComponent();
+	EnemyTank->AddComponent(SightSqr);
+
+	auto Sight = new EnemySightComponent(SightSqr);
+	EnemyTank->AddComponent(Sight);
+
+	auto EnemyTankControl = new EnemyTankComponent(Hitbox,Sight);
+	EnemyTank->AddComponent(EnemyTankControl);
+
+
+	return EnemyTank;
+
+}
+
+

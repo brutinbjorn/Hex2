@@ -40,10 +40,10 @@ char CollisionComponent::IsRectsOverLapping(SDL_Rect a, SDL_Rect b)
 
 	if ((Cube1TL.x <= Cube2BR.x && Cube1BR.x >= Cube2TL.x) && (Cube1TL.y <= Cube2BR.y && Cube1BR.y >= Cube2TL.y))
 	{
-		if (Cube1TL.x <= Cube2BR.x) overlap += DIRECTION_LEFT;
-		if (Cube1BR.x >= Cube2TL.x) overlap += DIRECTION_RIGHT;
-		if (Cube1TL.y <= Cube2BR.y) overlap += DIRECTION_UP;
-		if (Cube1BR.y >= Cube2TL.y) overlap += DIRECTION_DOWN;
+		if (Cube1TL.x <= Cube2BR.x) overlap += Directions::DIRECTION_LEFT;
+		if (Cube1BR.x >= Cube2TL.x) overlap += Directions::DIRECTION_RIGHT;
+		if (Cube1TL.y <= Cube2BR.y) overlap += Directions::DIRECTION_UP;
+		if (Cube1BR.y >= Cube2TL.y) overlap += Directions::DIRECTION_DOWN;
 		//m_gotHit = true;
 		return overlap;
 	}

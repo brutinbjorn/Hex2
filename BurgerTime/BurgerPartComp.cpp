@@ -25,7 +25,7 @@ void BurgerPartComp::CreateHitBoxes()
 		glm::ivec2 position{pos.x + size.x * i,pos.y};
 
 
-		papa->AddComponent(new HitboxComponent(position,size,1));
+		//papa->AddComponent(new HitboxComponent(position,size,1));
 		//		SDL_Rect HitboxRec;
 		//		HitboxRec.h = scaleOfTexture.y;
 		//		HitboxRec.w = scaleOfTexture.x / 5;
