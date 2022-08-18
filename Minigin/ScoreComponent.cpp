@@ -27,4 +27,12 @@ void ScoreComponent::OnNotify( const std::string& msg)
 		if (m_Score > 500){
 		}
 	}
+	if (msg == "BLUE_TANK_DIED")
+	{
+		AddScore(100);
+	}
+	if(msg == "RECOGNIZER_DIED")
+	{
+		AddScore(250);
+	}
 }

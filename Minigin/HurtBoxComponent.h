@@ -10,7 +10,7 @@ public:
 	HurtBoxComponent(SquareComponent* Sqr, int CollisionID = -1);
 
 
-	void Initialize() override;
+	void Initialize() override {};
 	void FixedUpdate(const float ) override {};
 	void Update(const float deltatime) override;
 	void LateUpdate(const float ) override {};

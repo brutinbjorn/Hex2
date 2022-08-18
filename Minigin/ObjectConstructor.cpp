@@ -21,19 +21,19 @@ std::shared_ptr<dae::GameObject> ObjectConstructor::BasicActor(const std::string
 	return newActor;
 }
 
-std::shared_ptr<dae::GameObject> ObjectConstructor::HealthBar(const glm::vec3& pos, const std::shared_ptr<dae::Font>& font)
+std::shared_ptr<dae::GameObject> ObjectConstructor::HealthBar(const glm::vec3& , const std::shared_ptr<dae::Font>& )
 {
 	auto NewHealthBar = std::make_shared<dae::GameObject>();
 
-	auto RenderComp = new RenderComponent();
-	auto TextComp = new dae::TextComponent("levens:", font, RenderComp);
+	//auto RenderComp = new RenderComponent();
+	//auto TextComp = new dae::TextComponent("levens:", font, RenderComp);
 
-	auto LiveManComp = new HealthBarComponent(TextComp);
+	//auto LiveManComp = new HealthBarComponent(TextComp);
 
-	NewHealthBar->AddComponent(RenderComp);
-	NewHealthBar->AddComponent(TextComp);
-	NewHealthBar->AddComponent(LiveManComp);
-	NewHealthBar->GetTransform()->SetPosition(pos);
+	//NewHealthBar->AddComponent(RenderComp);
+	//NewHealthBar->AddComponent(TextComp);
+	//NewHealthBar->AddComponent(LiveManComp);
+	//NewHealthBar->GetTransform()->SetPosition(pos);
 	return NewHealthBar;
 }
 

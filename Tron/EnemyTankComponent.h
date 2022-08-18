@@ -3,6 +3,8 @@
 
 #include "EnemySightComponent.h"
 #include "HitboxComponent.h"
+#include "Subject.h"
+
 class EnemyTankComponent :
     public BaseComponent
 {
@@ -16,7 +18,7 @@ public:
 
 	void Initialize() override {};
 	void FixedUpdate(const float ) override {};
-	void Update(const float ) override {};
+	void Update(const float ) override;
 	void LateUpdate(const float) override {};
 	void Render() const override {};
 
@@ -26,6 +28,8 @@ private:
 	EnemySightComponent* nm_pSight = nullptr;
 	int m_Health = 3;
 	int m_MaxHealth = 3;
+
+	Subject* m_pSubject = nullptr;
 
 
 };

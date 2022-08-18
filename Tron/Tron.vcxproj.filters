@@ -128,5 +128,8 @@
     <ClInclude Include="CollisionComponent.h">
       <Filter>Source Files\TronComponents</Filter>
     </ClInclude>
+    <ClInclude Include="HealthBarComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

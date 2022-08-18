@@ -55,6 +55,9 @@ public:
 	bool Recieve(BaseComponent* , const std::string& ) override;
 	
 
+	void SetActive(bool active) { m_Active = active; }
+	bool GetActive() const { return m_Active; }
+
 private:
 	dae::Texture2D* m_pTexture = nullptr;
 	SDL_Rect* m_pSrcRect = nullptr;
@@ -71,6 +74,8 @@ private:
 	bool m_IsSizeSet = false;
 	bool m_IsBoundToOtherComp = false;
 	float m_Rotation = 0.0;
+
+	bool m_Active = true;
 
 
 

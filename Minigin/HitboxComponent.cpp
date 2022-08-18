@@ -32,10 +32,10 @@ void HitboxComponent::Update(const float)
 	
 }
 
-dae::GameObject* HitboxComponent::GetParent()
-{
-	return GetParent();
-}
+//dae::GameObject* HitboxComponent::GetParent()
+//{
+//	//return GetParent();
+//}
 
 bool HitboxComponent::IsPointInThisHitbox(glm::ivec2 point) const
 {

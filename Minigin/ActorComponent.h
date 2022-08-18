@@ -28,11 +28,12 @@ public:
 	void MoveTranslate(float x,float y);
 	//resets the position
 	void Translate(float x, float y);
+
 	Subject* GetSubject() const { return m_pSubject; };
+
 	bool Recieve(BaseComponent*, const std::string&) override { return false; };
 private:
 	Subject* m_pSubject = nullptr;
-
 	glm::vec2 m_velocity= glm::vec2{0,0};
 	
 	bool m_DebugRender = true;

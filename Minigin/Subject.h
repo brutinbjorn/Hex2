@@ -15,7 +15,7 @@ public:
 	}
 	void RemoveObserver(InterFace::Observer* oldObserver)
 	{
-		auto val = std::ranges::remove(m_observers, oldObserver).begin();
+		auto val = std::remove(m_observers.begin(),m_observers.end(), oldObserver);
 		m_numberObservers--;
 
 	}

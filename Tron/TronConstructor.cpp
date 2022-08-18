@@ -1,5 +1,6 @@
 #include "TronConstructor.h"
 
+#include "ActorComponent.h"
 #include "BouncingBulletComponent.h"
 #include "CollisionComponent.h"
 #include "ComponentList.h"
@@ -14,6 +15,12 @@
 std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 {
 	auto tank = std::make_shared<dae::GameObject>();
+
+	//actor Logic
+	auto ac = new ActorComponent();
+	tank->AddComponent(ac);
+
+
 
 	//The Body
 	auto BodyRender = new RenderComponent();
@@ -36,9 +43,13 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	tank->AddComponent(GunLogic);
 
 
+
+
 	auto TankControls = new TankControlComponent(BodyRender,GunRender);
 	tank->AddComponent(TankControls);
 	return tank;
+
+
 
 
 }

@@ -130,3 +130,28 @@ void TankFieldControlComponent::CreateLinesAndWallsFromJsonFile(const std::strin
 
 }
 
+ void TankFieldControlComponent::CreateLinesWallsALt(const std::string& file, glm::ivec2 offset)
+ {
+	 // Generate Grid
+	 nlohmann::json j = JsonManager::GetInstance().LoadJsonDoc(file);
+	 nlohmann::json jAr = j["Walls"];
+	if(jAr.is_array())
+	{
+		for (nlohmann::json::iterator Array = jAr.begin(); Array != jAr.end(); ++Array)
+		{
+			if(Array->is_array())
+			{
+				for(nlohmann::json::iterator Line = Array->begin(); Line !=  Array->end(); ++Line )
+				{
+					
+				}
+			}
+
+			
+		}
+	}
+
+
+
+ }
+

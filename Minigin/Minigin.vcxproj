@@ -253,6 +253,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="GraphEnums.h" />
     <ClInclude Include="GraphNodes.h" />
     <ClInclude Include="HealthBarComponent.h" />
+    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="HitboxManager.h" />
     <ClInclude Include="HurtBoxComponent.h" />
@@ -342,6 +343,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="GraphEnums.cpp" />
     <ClCompile Include="GraphNodes.cpp" />
     <ClCompile Include="HealthBarComponent.cpp" />
+    <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="HitboxManager.cpp" />
     <ClCompile Include="HurtBoxComponent.cpp" />

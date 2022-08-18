@@ -203,6 +203,7 @@
     <ClInclude Include="EnemySightComponent.h" />
     <ClInclude Include="EnemyTankComponent.h" />
     <ClInclude Include="ENUMS.h" />
+    <ClInclude Include="HealthBarComponent.h" />
     <ClInclude Include="SquareComponent.h" />
     <ClInclude Include="TankCommands.h" />
     <ClInclude Include="TankControlComponent.h" />

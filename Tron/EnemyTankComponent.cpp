@@ -9,6 +9,27 @@ EnemyTankComponent::EnemyTankComponent(HitboxComponent* hitbox, EnemySightCompon
 
 }
 
+void EnemyTankComponent::Update(const float)
+{
+	if (nm_pHitbox)
+	{
+
+		if (nm_pHitbox->IsHit())
+		{
+			m_Health--;
+			if (m_Health <= 0)
+			{
+				GetParent()->SetMarkForDeletion();
+			}
+			else
+			{
+				nm_pHitbox->ResetHit();
+			}
+		}
+	}
+
+}
+
 bool EnemyTankComponent::Recieve(BaseComponent* , const std::string& basic_string)
 {
 	if(basic_string == "GOT_HIT")
@@ -20,5 +41,5 @@ bool EnemyTankComponent::Recieve(BaseComponent* , const std::string& basic_strin
 
 		return true;
 	}
-
+	return false;
 }

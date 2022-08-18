@@ -1,5 +1,7 @@
 #include "BouncingBulletComponent.h"
 
+#include <iostream>
+
 void BouncingBulletComponent::Update(const float)
 {
 	GetParent()->GetTransform()->Translate(m_Vector.x * m_speed,m_Vector.y, 0);
@@ -9,13 +11,9 @@ void BouncingBulletComponent::Update(const float)
 	{
 		HitboxComponent* hit = nullptr;
 		bool HasHit = nm_pHurtBox->IsOverlappingHitbox(hit);
-		if (hit)
-		{
-		};
-		/*if(hit) {
-			auto p = hit->GetParent()->GetComponent<>();
-			p.
-		}*/
+		if (HasHit)
+			std::cout << "HurtBox detects hit" << std::endl;
+
 
 	}
 
