@@ -3,8 +3,10 @@
 
 #include "ActorComponent.h"
 #include "HealthBarComponent.h"
+#include "ResourceManager.h"
 
 #include "ScoreComponent.h"
+#include "SquareComponent.h"
 #include "TextComponent.h"
 
 std::shared_ptr<dae::GameObject> ObjectConstructor::BasicActor(const std::string& RenderFile)
@@ -52,5 +54,29 @@ std::shared_ptr<dae::GameObject> ObjectConstructor::ScoreBar(const glm::vec3& po
 	ScoreBar->AddComponent(ScoreBarComp);
 	ScoreBar->GetTransform()->SetPosition(pos);
 	return ScoreBar;
+}
+
+std::shared_ptr<dae::GameObject> ObjectConstructor::BaseButton(const glm::vec3& pos,const SDL_Rect& relativeRect,
+	const std::shared_ptr<dae::Font>& font)
+{
+
+	auto button = std::make_shared<dae::GameObject>();
+	button->GetTransform()->Translate(pos);
+
+	auto buttonSqr = new SquareComponent();
+	button->AddComponent(buttonSqr);
+	buttonSqr->SetSquare(relativeRect);
+
+	//auto font3 = dae::ResourceManager::GetInstance().LoadFont(font, size);
+
+
+	auto TextRender = new RenderComponent();
+	button->AddComponent(TextRender);
+	auto Text = new dae::TextComponent("test",font,TextRender);
+	button->AddComponent(Text);
+
+
+	return button;
+
 }
 

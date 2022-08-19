@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "MiniginPCH.h"
 
+
 namespace dae
 {
 	class Font;
@@ -24,9 +25,9 @@ namespace dae
 		void SetColor(const SDL_Color& newColor);
 
 		TextComponent( const std::string& text, const std::shared_ptr<Font>& font,RenderComponent* renderComp);
-		 ~TextComponent() override;
+		~TextComponent() override;
 
-		Texture2D* CreateAndGetTexture() const;
+		dae::Texture2D* CreateAndGetTexture() const;
 
 		TextComponent(const TextComponent& other) = delete;
 		TextComponent(TextComponent&& other) = delete;
@@ -44,4 +45,8 @@ namespace dae
 		std::shared_ptr<Font> m_Font;
 		//Texture2D* m_TextTexture = nullptr;
 	};
+	
 }
+
+
+

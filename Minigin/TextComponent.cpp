@@ -8,7 +8,7 @@
 #include "Texture2D.h"
 
 
-dae::TextComponent::TextComponent(const std::string& text, const std::shared_ptr<Font>& font,RenderComponent* renderComp) 
+dae::TextComponent::TextComponent(const std::string& text, const std::shared_ptr<dae::Font>& font,RenderComponent* renderComp) 
 	:  m_NeedsUpdate(true), m_Text(text), m_Font(font), m_pRenderComponent(renderComp)//, m_TextTexture(nullptr)
 {
 
@@ -30,14 +30,14 @@ dae::Texture2D* dae::TextComponent::CreateAndGetTexture() const
 	{
 		throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
 	}
-	auto texture = SDL_CreateTextureFromSurface(Renderer::GetInstance().GetSDLRenderer(), surf);
+	auto texture = SDL_CreateTextureFromSurface(dae::Renderer::GetInstance().GetSDLRenderer(), surf);
 	if (texture == nullptr)
 	{
 		throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 	}
 	SDL_FreeSurface(surf);
 
-	return new Texture2D(texture);
+	return new dae::Texture2D(texture);
 
 }
 
@@ -102,14 +102,14 @@ void dae::TextComponent::SetText(const std::string& text)
 	m_NeedsUpdate = true;
 }
 
-void dae::TextComponent::SetColor(uint8_t r, uint8_t g, uint8_t b)
+void  dae::TextComponent::SetColor(uint8_t r, uint8_t g, uint8_t b)
 {
 	const SDL_Color newCol = SDL_Color{ r, g, b };
 
 	SetColor(newCol);
 }
 
-void dae::TextComponent::SetColor(const SDL_Color& newColor)
+void  dae::TextComponent::SetColor(const SDL_Color& newColor)
 {
 	m_Color = newColor;
 }

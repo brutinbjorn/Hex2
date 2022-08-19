@@ -6,7 +6,7 @@ class TankGameScene final :public dae::Scene
 public:
 
 	explicit TankGameScene(const std::string& name);
-	~TankGameScene() = default;
+	~TankGameScene() override = default;
 	//TankGameScene(const TankGameScene& other) = default;
 	//TankGameScene(TankGameScene&& other) noexcept = default;
 	//TankGameScene& operator=(const TankGameScene& other) = default;

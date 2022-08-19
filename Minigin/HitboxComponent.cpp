@@ -3,7 +3,7 @@
 
 #include "GameObject.h"
 #include "Renderer.h"
-#include "../Tron/SquareComponent.h"
+#include "SquareComponent.h"
 
 //HitboxComponent::HitboxComponent(const glm::ivec2& pos, const glm::ivec2& size, int CollisionID)
 //	:m_rect(SDL_Rect(pos.x, pos.y, size.x, size.y))

@@ -1,10 +1,9 @@
 #pragma once
 #include "BaseComponent.h"
+#include "TextComponent.h"
 
-namespace dae
-{
-	class TextComponent;
-}
+
+//class TextComponent;
 
 class FPSComponent final : public BaseComponent
 {

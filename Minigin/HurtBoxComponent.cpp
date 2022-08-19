@@ -3,7 +3,7 @@
 
 #include "HitboxManager.h"
 #include "Renderer.h"
-#include "../Tron/SquareComponent.h"
+#include "SquareComponent.h"
 
 
 HurtBoxComponent::HurtBoxComponent(SquareComponent* Sqr, int CollisionID)

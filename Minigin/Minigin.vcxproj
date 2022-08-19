@@ -246,6 +246,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
     <ClInclude Include="ActorComponent.h" />
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="ButtonComponent.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DefaultScene.h" />
@@ -264,6 +265,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SoundSystem.h" />
+    <ClInclude Include="SquareComponent.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TimeComponent.h" />
     <ClInclude Include="ComponentList.h" />
@@ -336,6 +338,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="ButtonComponent.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
@@ -353,6 +356,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="SoundSystem.cpp" />
+    <ClCompile Include="SquareComponent.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TimeComponent.cpp" />
     <ClCompile Include="Font.cpp" />

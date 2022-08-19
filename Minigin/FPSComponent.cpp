@@ -7,8 +7,10 @@
 
 
 
+
 void FPSComponent::Update(const float dt)
 {
+	using namespace dae;
 	m_Time += dt;
 	if(m_Time >= m_UpdateInterval)
 	{
