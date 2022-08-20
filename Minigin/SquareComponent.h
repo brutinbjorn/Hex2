@@ -24,8 +24,8 @@ public:
 		auto parent = GetParent()->GetTransform();
 		if(m_FollowParent && parent)
 		{
-			m_RectWorld.x = static_cast<int>(parent->GetPosition().x) + m_rect.x;
-			m_RectWorld.y = static_cast<int>(parent->GetPosition().y) + m_rect.y;
+			m_rectWorld.x = static_cast<int>(parent->GetPosition().x) + m_rect.x;
+			m_rectWorld.y = static_cast<int>(parent->GetPosition().y) + m_rect.y;
 		}
 	};
 	void LateUpdate(const float) override {};
@@ -34,10 +34,10 @@ public:
 	{
 		//dae::Renderer::GetInstance().RenderRect(m_RectWorld);
 		if (m_RenderFull)
-			dae::Renderer::GetInstance().RenderRect(m_RectWorld, m_ColorFull);
+			dae::Renderer::GetInstance().RenderRect(m_rectWorld, m_ColorFull);
 
 		if(m_RenderLines)
-			dae::Renderer::GetInstance().RenderFullRect(m_RectWorld, m_ColorBorder);
+			dae::Renderer::GetInstance().RenderFullRect(m_rectWorld, m_ColorBorder);
 	}
 
 	void SetSquare(const SDL_Rect& Rect) 
@@ -45,9 +45,9 @@ public:
 		m_rect = Rect;
 		if (GetParent())
 		{
-			m_RectWorld = m_rect;
-			m_RectWorld.x = Rect.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
-			m_RectWorld.y = Rect.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
+			m_rectWorld = m_rect;
+			m_rectWorld.x = Rect.x + static_cast<int>(GetParent()->GetTransform()->GetPosition().x);
+			m_rectWorld.y = Rect.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
 		}
 	};
 	void SetRenderLines(bool rnd = true,SDL_Color clr = {255,255,255,255})
@@ -61,10 +61,10 @@ public:
 		m_ColorFull = clr;
 	}
 
-	const SDL_Rect& GetSquareRelative() const { return m_RectWorld; };
-	const SDL_Rect& GetSquareWorld() const { return m_rect; };
+	const SDL_Rect& GetSquareRelative() const { return m_rect; };
+	const SDL_Rect& GetSquareWorld() const { return m_rectWorld; };
 private:
-	SDL_Rect m_RectWorld = {};  
+	SDL_Rect m_rectWorld = {};  
 	SDL_Rect m_rect = {};
 	bool m_FollowParent = true;
 	SDL_Color m_ColorBorder = SDL_Color{};

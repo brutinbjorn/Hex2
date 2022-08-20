@@ -232,6 +232,7 @@ void dae::Minigin::Run()
 			float dt = time.GetDeltaTime();
 
 			Update(dt);
+			LateUpdate(dt); 
 			Render();
 		}
 	}

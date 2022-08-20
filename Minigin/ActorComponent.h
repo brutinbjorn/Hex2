@@ -24,10 +24,12 @@ public:
 	void LateUpdate(const float) override {};
 	void GuiRender() const override {};
 
-	//adds to current positions
-	void MoveTranslate(float x,float y);
-	//resets the position
-	void Translate(float x, float y);
+
+	glm::vec2 GetVelocity() const { return m_velocity; };
+	void SetVelocity(const glm::vec2& vec) { m_velocity = vec; }
+
+	void SetSpeed(float NewSpeed) { m_speed = NewSpeed; }
+	float GetSpeed() { return m_speed; }
 
 	Subject* GetSubject() const { return m_pSubject; };
 
@@ -35,7 +37,7 @@ public:
 private:
 	Subject* m_pSubject = nullptr;
 	glm::vec2 m_velocity= glm::vec2{0,0};
-	
+	float m_speed = 0.f;
 	bool m_DebugRender = true;
 };
 

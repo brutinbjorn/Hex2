@@ -15,10 +15,21 @@ class BouncingBulletComponent :
 {
 public:
 	BouncingBulletComponent() = default;
-	BouncingBulletComponent(float rotation,CollisionComponent* collision, HurtBoxComponent* hurtBox):nm_pCollisionBox(collision),nm_pHurtBox(hurtBox)
+	BouncingBulletComponent(float rotation,CollisionComponent* collision, HurtBoxComponent* hurtBox,ActorComponent* ac,float speed)
+	:nm_pCollisionBox(collision),nm_pHurtBox(hurtBox),nm_pActor(ac),m_Rotation(rotation)
 	{
-		m_Vector.x = std::cos(rotation);
-		m_Vector.y = std::sin(rotation);
+		//m_Rotation = rotation;
+		if (nm_pActor)
+		{
+			glm::vec2 vec;
+			vec.x = std::cos(m_Rotation);
+			vec.y = std::sin(m_Rotation);
+			nm_pActor->SetVelocity(vec);
+			nm_pActor->SetSpeed(speed);
+
+		}
+		//m_Vector.x = std::cos(rotation);
+		//m_Vector.y = std::sin(rotation);
 	};
 	~BouncingBulletComponent() override = default;
 	BouncingBulletComponent(const BouncingBulletComponent& other) = delete;
@@ -36,10 +47,13 @@ public:
 private:
 
 	//HitboxComponent* nm_pHitbox = nullptr; // hitbox
+	ActorComponent* nm_pActor = nullptr;
 	HurtBoxComponent* nm_pHurtBox = nullptr;
 	CollisionComponent* nm_pCollisionBox = nullptr;
 
-	glm::vec2 m_Vector;
+	//glm::vec2 m_Vector;
+
+	float m_Rotation = 0.f;
 	float m_speed = 2;
 	int m_BounceLeft = 5;
 };

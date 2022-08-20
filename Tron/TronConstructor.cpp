@@ -5,6 +5,7 @@
 #include "CollisionComponent.h"
 #include "ComponentList.h"
 #include "EnemyTankComponent.h"
+#include "HitboxManager.h"
 #include "HurtBoxComponent.h"
 #include "SquareComponent.h"
 #include "TankControlComponent.h"
@@ -19,8 +20,6 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	//actor Logic
 	auto ac = new ActorComponent();
 	tank->AddComponent(ac);
-
-
 
 	//The Body
 	auto BodyRender = new RenderComponent();
@@ -43,13 +42,9 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	tank->AddComponent(GunLogic);
 
 
-
-
 	auto TankControls = new TankControlComponent(BodyRender,GunRender);
 	tank->AddComponent(TankControls);
 	return tank;
-
-
 
 
 }
@@ -102,20 +97,25 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 	auto bulletImg = new RenderComponent();
 	bulletImg->SetTexture("BulletPlayer.png");
 	bulletImg->EnableOffset(true);
-	bulletImg->SetOffset(-16, 16);
+	bulletImg->SetOffset(-16, -16);
 	bullet->AddComponent(bulletImg);
 
 	auto BulletSquare = new SquareComponent();
 	BulletSquare->SetSquare({ -5,-5,10,10 });
 	bullet->AddComponent(BulletSquare);
-	auto BulletCol = new CollisionComponent(BulletSquare);
+
+	auto ac =new ActorComponent();
+	bullet->AddComponent(ac);
+
+	auto BulletCol = new CollisionComponent(BulletSquare,false,ac);
 	bullet->AddComponent(BulletCol);
 
 
-	auto BulletHurtBoxComponent = new HurtBoxComponent(BulletSquare);
+	auto BulletHurtBoxComponent = new HurtBoxComponent(BulletSquare,0);
 	bullet->AddComponent(BulletHurtBoxComponent);
 
-	auto bulletLogic = new BouncingBulletComponent(Rotation,BulletCol,BulletHurtBoxComponent);
+
+	auto bulletLogic = new BouncingBulletComponent(static_cast<float>(M_PI) * (Rotation-90.f)/ 180.f ,BulletCol,BulletHurtBoxComponent,ac,25);
 	bullet->AddComponent(bulletLogic);
 
 	return bullet;
@@ -134,12 +134,16 @@ std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
 	//auto Hitbox = new HitBoxComponent();
 
 	auto Sqr = new SquareComponent();
-	Sqr->SetSquare({ -16,-16,32,32 });
 	EnemyTank->AddComponent(Sqr);
+	Sqr->SetSquare({ -18,-18,34,34 });
+	Sqr->SetRenderLines(true, { 255, 125,0,255 });
+	Sqr->SetRenderFull(true, { 255, 125,0,255 });
+	//..EnemyTank->AddComponent(Sqr);
 
-	auto Hitbox = new HitboxComponent(Sqr,1);
+
+	auto Hitbox = new HitboxComponent(Sqr,0);
 	EnemyTank->AddComponent(Hitbox);
-
+	dae::HitBoxManager::GetInstance().addHitBox(Hitbox);
 
 	auto SightSqr = new SquareComponent();
 	EnemyTank->AddComponent(SightSqr);

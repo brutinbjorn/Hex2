@@ -38,6 +38,7 @@ namespace dae
 		void AddComponent(BaseComponent* ToAdd);
 
 		void SetMarkForDeletion(bool mark = true) { m_MarkForDeletion = mark; }
+		bool IsMarkedForDeletion() const { return  m_MarkForDeletion; }
 
 		//REDUNDENT send function, cleanup, change or remove.
 
@@ -45,8 +46,8 @@ namespace dae
 		bool Recieve( BaseComponent* sender, const std::string& msg);
 
 	private:
-		void SetChild(BaseComponent* child);
-		void RemoveChild(BaseComponent* child);
+		//void SetChild(BaseComponent* child);
+		void RemoveComponent(BaseComponent* child);
 		std::vector<BaseComponent*> m_pComponents = std::vector<BaseComponent*>();
 		//std::vector<GameObject*> m_pChildObjects = std::vector<Gamo>
 

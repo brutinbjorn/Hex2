@@ -20,7 +20,7 @@ public:
 
 
 	bool IsOverlappingHitbox(HitboxComponent* GetHitBox);
-	bool IsAHit() const { return m_hasHit; }
+	bool GotAHit() const { return m_hasHit; }
 
 private:
 	SquareComponent* nm_pRect;

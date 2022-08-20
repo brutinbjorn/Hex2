@@ -48,7 +48,25 @@ void Scene::LateUpdate(const float lt)
 	for (auto& object : m_Objects)
 	{
 		object->LateUpdate(lt);
+		if (object->IsMarkedForDeletion())
+			m_RunCleanUp = true;
 	}
+
+	if (m_RunCleanUp)
+	{
+		for (int i = 0; i < int(m_Objects.size()); ++i)
+		{
+			if (m_Objects[i]->IsMarkedForDeletion())
+			{
+				m_Objects[i].swap(m_Objects.back());
+				m_Objects.pop_back();
+			}
+		}
+		m_RunCleanUp = false;
+	}
+
+
+
 }
 
 void Scene::Render() const

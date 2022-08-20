@@ -38,6 +38,7 @@ namespace dae
 
 	protected:
 		bool m_IsActive = false;
+		bool m_RunCleanUp = false;
 		std::string m_Name;
 		std::vector <std::shared_ptr<GameObject>> m_Objects{};
 

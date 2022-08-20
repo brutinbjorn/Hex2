@@ -10,9 +10,11 @@ ActorComponent::ActorComponent()
 {
 }
 
-void ActorComponent::Update(float)
+void ActorComponent::Update(float dt)
 {
+	//auto pos = GetParent()->GetTransform()->GetPosition();
 
+	GetParent()->GetTransform()->Translate(m_velocity.x * m_speed * dt , m_velocity.y * m_speed * dt , 0);
 }
 
 void ActorComponent::Render() const
@@ -24,21 +26,6 @@ void ActorComponent::Render() const
 		rend.RenderPointRect(val.x, val.y, 32);
 		rend.RenderRect(val, 2, 32);
 	}
-}
-
-void ActorComponent::MoveTranslate(float x, float y)
-{
-	auto trs = GetParent()->GetTransform();
-	auto pos = trs->GetPosition();
-	pos = { pos.x + x,pos.y + y,0 };
-	trs->SetPosition(pos);
-
-}
-
-void ActorComponent::Translate(float x, float y)
-{
-	auto pos = glm::vec3{ x,y,1 };
-	GetParent()->GetTransform()->SetPosition(pos); 
 }
 
 

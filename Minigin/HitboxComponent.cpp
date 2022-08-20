@@ -5,12 +5,6 @@
 #include "Renderer.h"
 #include "SquareComponent.h"
 
-//HitboxComponent::HitboxComponent(const glm::ivec2& pos, const glm::ivec2& size, int CollisionID)
-//	:m_rect(SDL_Rect(pos.x, pos.y, size.x, size.y))
-//	, m_CollisionID(CollisionID)
-//{
-//
-//}
 
 HitboxComponent::HitboxComponent(SquareComponent* sqr, int CollisionID)
 	: nm_pSquareComp(sqr), m_CollisionID(CollisionID)
@@ -24,18 +18,9 @@ void HitboxComponent::Render() const
 
 void HitboxComponent::Update(const float)
 {
-	//glm::ivec3 pos = GetParent()->GetTransform()->GetPosition();
-
-	//m_rect.x = pos.x;
-	//m_rect.y = pos.y;
-	m_rect = nm_pSquareComp->GetSquareWorld();
-	
+//	m_rect = nm_pSquareComp->GetSquareWorld();
 }
 
-//dae::GameObject* HitboxComponent::GetParent()
-//{
-//	//return GetParent();
-//}
 
 bool HitboxComponent::IsPointInThisHitbox(glm::ivec2 point) const
 {

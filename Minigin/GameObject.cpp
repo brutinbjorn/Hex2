@@ -69,11 +69,14 @@ void dae::GameObject::SetPosition(float x, float y)
 void dae::GameObject::AddComponent(BaseComponent* ToAdd)
 {
 	m_pComponents.push_back(ToAdd);
-	SetChild(ToAdd);
-//	return ToAdd;
+	//SetChild(ToAdd);
+
+	if (ToAdd->m_pParent && ToAdd->m_pParent != this)
+		ToAdd->m_pParent->RemoveComponent(ToAdd);
+	ToAdd->m_pParent = this;
 }
 
-bool dae::GameObject::Send( BaseComponent* sender, const std::string& msg)
+bool dae::GameObject::Send(BaseComponent* sender, const std::string& msg)
 {
 	return Recieve(sender, msg);
 }
@@ -90,14 +93,9 @@ bool dae::GameObject::Recieve(BaseComponent* sender, const std::string& msg)
 
 }
 
-void dae::GameObject::SetChild(BaseComponent* child)
-{
-	if (child->m_pParent && child->m_pParent != this)
-		child->m_pParent->RemoveChild(child);
-	child->m_pParent = this;
-}
 
-void dae::GameObject::RemoveChild(BaseComponent* child)
+
+void dae::GameObject::RemoveComponent(BaseComponent* child)
 {
 	for(auto i  = m_pComponents.begin();i != m_pComponents.end(); i++)
 	{
