@@ -21,7 +21,7 @@ void BurgerComponent::CreateBurgerParts(glm::vec2 position, glm::ivec2 scaleOfTe
 
 	auto scene = dae::SceneManager::GetInstance().GetScene("Demo");
 
-	for(int i = 0; i < positions.size();i++)
+	for(size_t i = 0; i < positions.size();i++)
 	{
 		auto burgerSlice = std::make_shared<dae::GameObject>();
 		burgerSlice->AddComponent(new BurgerPartComp(scaleOfTexture,BurgerTextures[i]));

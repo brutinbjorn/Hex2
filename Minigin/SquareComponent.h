@@ -32,7 +32,12 @@ public:
 
 	void Render() const override
 	{
-		dae::Renderer::GetInstance().RenderRect(m_RectWorld);
+		//dae::Renderer::GetInstance().RenderRect(m_RectWorld);
+		if (m_RenderFull)
+			dae::Renderer::GetInstance().RenderRect(m_RectWorld, m_ColorFull);
+
+		if(m_RenderLines)
+			dae::Renderer::GetInstance().RenderFullRect(m_RectWorld, m_ColorBorder);
 	}
 
 	void SetSquare(const SDL_Rect& Rect) 
@@ -45,7 +50,16 @@ public:
 			m_RectWorld.y = Rect.y + static_cast<int>(GetParent()->GetTransform()->GetPosition().y);
 		}
 	};
-
+	void SetRenderLines(bool rnd = true,SDL_Color clr = {255,255,255,255})
+	{
+		m_RenderLines = rnd;
+		m_ColorBorder = clr;
+	}
+	void SetRenderFull(bool rnd = true, SDL_Color clr = {255,255,255,255})
+	{
+		m_RenderFull = rnd;
+		m_ColorFull = clr;
+	}
 
 	const SDL_Rect& GetSquareRelative() const { return m_RectWorld; };
 	const SDL_Rect& GetSquareWorld() const { return m_rect; };
@@ -53,6 +67,12 @@ private:
 	SDL_Rect m_RectWorld = {};  
 	SDL_Rect m_rect = {};
 	bool m_FollowParent = true;
+	SDL_Color m_ColorBorder = SDL_Color{};
+	bool m_RenderLines = false;
+	SDL_Color m_ColorFull = SDL_Color{};
+	bool m_RenderFull = false;
+
+
 	glm::vec3 m_formerPos = {}; 
 };
 

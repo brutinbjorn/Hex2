@@ -47,12 +47,38 @@ private:
 class LimitedMoveCommandAlt : public Command
 {
 public:
-	LimitedMoveCommandAlt(char Direction, float x, float y) : m_direction(Direction), m_xMove(x), m_yMove(y) {};
+	LimitedMoveCommandAlt(dae::GameObject* actor, TankFieldControlComponent* grid, char Direction, float x, float y) :
+		m_pActor(actor),m_pGrid(grid),
+		m_direction(Direction), m_xMove(x), m_yMove(y) {};
+	~LimitedMoveCommandAlt() override = default;
+
+	void Execute() override
+	{
+		glm::ivec2 centerPos;
+		if (m_pGrid->AskIfPlayerCanMoveInRequestedDirection(m_direction, m_pActor->GetTransform()->GetPosition(), centerPos))
+		{
+			m_pActor->GetTransform()->Translate(m_xMove, m_yMove, 0);
+
+			auto pos = m_pActor->GetTransform()->GetPosition();
+			if(m_direction == DIRECTION_LEFT || m_direction == DIRECTION_RIGHT)
+			{
+				m_pActor->GetTransform()->SetPosition(pos.x, static_cast<float>(centerPos.y), 0);
+			}
+
+			if (m_direction == DIRECTION_UP || m_direction == DIRECTION_DOWN)
+			{
+				m_pActor->GetTransform()->SetPosition(static_cast<float>(centerPos.x), pos.y, 0);
+			}
+		}
+
+	};
 private:
 	char m_direction = 0;
 	float m_xMove = 0;
 	float m_yMove = 0;
-	 
+
+	TankFieldControlComponent* m_pGrid = nullptr;
+	dae::GameObject* m_pActor = nullptr;
 
 };
 

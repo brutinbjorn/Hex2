@@ -36,6 +36,7 @@ namespace dae
 
 		void RenderRect(const SDL_Rect& rec, const SDL_Color& color = { 255,255,255,255 });
 		void RenderRect(const glm::vec2& pos, int Height,int yWidth, const SDL_Color& color = {255,255,255,255});
+		void RenderFullRect(const SDL_Rect& rec, const SDL_Color& color = { 255,255,255,255 });
 		void RenderPointRect(int xCenter, int yCenter, int size);
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }

@@ -29,7 +29,7 @@ dae::InputManager::InputManager() : m_EventOld{0}
 dae::InputManager::~InputManager()
 {
 	delete m_pController;
-	for (int i = 0; i < m_pControllers.size(); i++)
+	for (size_t i = 0; i < m_pControllers.size(); i++)
 		delete m_pControllers[i];
 
 	for (std::list<Action>::iterator iter = m_Actions.begin(); iter != m_Actions.end(); ++iter)

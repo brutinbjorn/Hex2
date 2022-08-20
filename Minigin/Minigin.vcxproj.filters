@@ -208,7 +208,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SquareComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -351,7 +351,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SquareComponent.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

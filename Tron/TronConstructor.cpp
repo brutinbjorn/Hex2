@@ -71,8 +71,27 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameField(const std::strin
 	field->AddComponent(FieldControl);
 	FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile,glm::ivec2{ -(size.x / 2), -(size.y / 2) });
 
+	return field;
+}
 
+std::shared_ptr<dae::GameObject> TronConstructor::TankGameFieldAlt(const std::string& , const std::string& PathJsonFile, glm::ivec2 SizeOfCell)//, const glm::ivec2& PathOffset)
+{
+	auto field = std::make_shared<dae::GameObject>();
 
+	//auto bgImage = new RenderComponent();
+	//bgImage->SetTexture(BackgroundImg);
+
+	//auto size = bgImage->GetTextureSize();
+	//bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
+
+	//field->AddComponent(bgImage);
+	//field->SetPosition(510, 360);// Center position of screen.
+
+	auto FieldControl = new TankFieldControlComponent();
+	field->AddComponent(FieldControl);
+	//FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile, glm::ivec2{ -(size.x / 2), -(size.y / 2) });
+
+	FieldControl->CreateLinesWallsAlt(PathJsonFile,SizeOfCell);
 	return field;
 }
 
@@ -110,7 +129,7 @@ std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
 	//The Body
 	auto BodyRender = new RenderComponent();
 	EnemyTank->AddComponent(BodyRender);
-	BodyRender->SetTexture("TankBlueVert.jpg");
+	BodyRender->SetTexture("TankBlueVert.png");
 	BodyRender->SetOffset(-16, -16);
 	//auto Hitbox = new HitBoxComponent();
 

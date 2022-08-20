@@ -23,7 +23,7 @@ MoveGridComponent::MoveGridComponent(const std::string& fileName, glm::ivec2 off
 char MoveGridComponent::GetDirections(glm::vec2 pos)
 {
 	int returnVal = 0;
-	for(int i = 0; i < m_MoveZones.size(); i++)
+	for(size_t i = 0; i < m_MoveZones.size(); i++)
 	{
 		int foundVal = m_MoveZones[i]->GetPossibleDirFromRect(pos);
 		if (foundVal != 0)

@@ -21,19 +21,29 @@ void TankGameScene::Initialize()
 {
 	// BackGround
 
-	std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameField("BackgroundTron.png", "TronFieldPathWalls.json");
+	//std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameField("BackgroundTron.png", "TronFieldPathWalls.json");
+	//AddGameObject(Field);
+
+	std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameFieldAlt("", "TronFieldAlt1.json",{32,32});
 	AddGameObject(Field);
 
 	auto fieldControl = Field->GetComponent<TankFieldControlComponent>();
 
 	auto TankStartPos = fieldControl->GetPlayerStartingPosition();
-	//auto EnemyStartPos = fieldControl->GetEnemyStartPosition();
+	auto EnemyStartPos = fieldControl->GetEnemyStartPosition();
 
 
 	// Tank Logic
 	std::shared_ptr<dae::GameObject> playerTank = TronConstructor::PlayerTank();
 	playerTank->GetTransform()->SetPosition(static_cast<float>(TankStartPos.x),static_cast<float>(TankStartPos.y), 0);
 	AddGameObject(playerTank);
+
+	auto enemyTank = TronConstructor::EnemyTank();
+	enemyTank->GetTransform()->SetPosition(static_cast<float>(EnemyStartPos.x),static_cast<float>(EnemyStartPos.y),0);
+	AddGameObject(enemyTank);
+
+
+
 
 
 
@@ -50,28 +60,58 @@ void TankGameScene::Initialize()
 	TurnGunRight.pCommand = new TurnGunCommand(tankGun, 1);
 	dae::InputManager::GetInstance().AddAction(TurnGunRight);
 
+	dae::Action FireGun = dae::Action();
+	FireGun.key = SDL_SCANCODE_C;
+	FireGun.pCommand = new FireGunCommand(tankGun);
+	dae::InputManager::GetInstance().AddAction(FireGun);
 
-	// Tank Body Input
+
+	//movement
 	dae::Action MoveDownLocked = dae::Action();
 	MoveDownLocked.key = SDL_SCANCODE_DOWN;
-	MoveDownLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl,0, 1);
+	MoveDownLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_DOWN, 0, 1);
 	dae::InputManager::GetInstance().AddAction(MoveDownLocked);
 
 	dae::Action MoveUpLocked = dae::Action();
 	MoveUpLocked.key = SDL_SCANCODE_UP;
-	MoveUpLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 0, -1);
+	MoveUpLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_UP, 0, -1);
 	dae::InputManager::GetInstance().AddAction(MoveUpLocked);
 
 	dae::Action MoveLeftLocked = dae::Action();
 	MoveLeftLocked.key = SDL_SCANCODE_LEFT;
-	MoveLeftLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, -1, 0);
+	MoveLeftLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_LEFT, -1, 0);
 	dae::InputManager::GetInstance().AddAction(MoveLeftLocked);
 
 	dae::Action MoveRightLocked = dae::Action();
 	MoveRightLocked.key = SDL_SCANCODE_RIGHT;
-	MoveRightLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 1, 0);
+	MoveRightLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_RIGHT, 1, 0);
 	dae::InputManager::GetInstance().AddAction(MoveRightLocked);
 
+
+
+#pragma region old
+	//// Tank Body Input
+	//dae::Action MoveDownLocked = dae::Action();
+	//MoveDownLocked.key = SDL_SCANCODE_DOWN;
+	//MoveDownLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl,0, 1);
+	//dae::InputManager::GetInstance().AddAction(MoveDownLocked);
+
+	//dae::Action MoveUpLocked = dae::Action();
+	//MoveUpLocked.key = SDL_SCANCODE_UP;
+	//MoveUpLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 0, -1);
+	//dae::InputManager::GetInstance().AddAction(MoveUpLocked);
+
+	//dae::Action MoveLeftLocked = dae::Action();
+	//MoveLeftLocked.key = SDL_SCANCODE_LEFT;
+	//MoveLeftLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, -1, 0);
+	//dae::InputManager::GetInstance().AddAction(MoveLeftLocked);
+
+	//dae::Action MoveRightLocked = dae::Action();
+	//MoveRightLocked.key = SDL_SCANCODE_RIGHT;
+	//MoveRightLocked.pCommand = new LimitedMoveCommand(playerTank.get(), fieldControl, 1, 0);
+	//dae::InputManager::GetInstance().AddAction(MoveRightLocked);
+
+#pragma endregion old
 
 #ifdef _DEBUG
 	dae::Action MoveDown = dae::Action();

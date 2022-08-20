@@ -21,9 +21,10 @@ public:
 	TankFieldControlComponent& operator=(TankFieldControlComponent&& other) noexcept = delete;
 
 	char GetPossibleDirectionToMove(const glm::ivec3& position, glm::ivec2& CenterPosOfLine) const;
+	bool AskIfPlayerCanMoveInRequestedDirection(char direction, const glm::ivec2 playerPos, glm::ivec2& CenterPosOfLine) const;
 
 	void CreateLinesAndWallsFromJsonFile(const std::string& file,glm::ivec2 offset = {});
-	void CreateLinesWallsALt(const std::string& file, glm::ivec2 offset = {});
+	void CreateLinesWallsAlt(const std::string& file, glm::ivec2 offset = {});
 
 	glm::ivec2 GetPlayerStartingPosition() const { return m_playerStartPos; };
 	glm::ivec2 GetEnemyStartPosition() const { return m_EnemyStartPos; };
@@ -47,9 +48,9 @@ private:
 	};
 
 	std::vector<TankFieldLineComponent*> nm_pLines;
+	std::vector<CellOfTheGrid> m_Cells;
 
-
-	int m_PathExtraSpace = 2;
+	int m_PathExtraSpace = 4;
 	glm::ivec2 m_Offset = {};
 	glm::ivec2 m_playerStartPos = {};
 	glm::ivec2 m_EnemyStartPos = {};

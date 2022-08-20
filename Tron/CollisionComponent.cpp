@@ -13,7 +13,7 @@ void CollisionComponent::Update(const float)
 	{
 		auto sqrWorld = nm_pSquare->GetSquareWorld();
 		auto Others = dae::CollisionManager::GetInstance().GetAllCollisionBoxes();
-		for (int index = 0; index < Others.size(); ++index)
+		for (size_t index = 0; index < Others.size(); ++index)
 		{
 			if (Others[index] != this)
 			{

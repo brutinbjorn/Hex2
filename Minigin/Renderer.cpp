@@ -168,6 +168,14 @@ void dae::Renderer::RenderRect(const glm::vec2& pos, int Height, int Width, cons
 
 }
 
+void dae::Renderer::RenderFullRect(const SDL_Rect& rec, const SDL_Color& color)
+{
+	SDL_SetRenderDrawColor(m_Renderer, color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(m_Renderer, &rec);
+	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+
+}
+
 void dae::Renderer::RenderPointRect(int xCenter, int yCenter, int size)
 {
 	SDL_Rect rect;
