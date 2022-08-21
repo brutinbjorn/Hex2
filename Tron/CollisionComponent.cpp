@@ -26,8 +26,8 @@ void CollisionComponent::Update(const float)
 				if(!m_static)
 				{
 					auto val = nm_pActor->GetVelocity();
-					sqrWorld.x += static_cast<int>(val.x + 0.5f);
-					sqrWorld.y += static_cast<int>(val.y + 0.5f);
+					sqrWorld.x += static_cast<int>(val.x + 1.2f);
+					sqrWorld.y += static_cast<int>(val.y + 1.2f);
 				}
 				auto dir = IsRectsOverLapping(sqrWorld, otherRec->GetSquareWorld());
 
@@ -55,18 +55,19 @@ char CollisionComponent::IsRectsOverLapping(SDL_Rect a, SDL_Rect b)
 	glm::ivec2 Cube2TL = { b.x,b.y };
 	glm::ivec2 Cube2BR = { b.x + b.w, b.y + b.h };
 
+	glm::vec2 val;
+	if(nm_pActor)val = nm_pActor->GetVelocity();
+
 	if ((Cube1TL.x <= Cube2BR.x &&  Cube2TL.x <= Cube1BR.x) && (Cube1TL.y <= Cube2BR.y && Cube1BR.y >= Cube2TL.y))
 	{
-
-
-		if (Cube1TL.x <= Cube2BR.x) 
-			overlap += Directions::DIRECTION_RIGHT;
-		if (Cube1BR.x >= Cube2TL.x) 
-			overlap += Directions::DIRECTION_LEFT;
-		 if (Cube1TL.y <= Cube2BR.y) 
-			overlap += Directions::DIRECTION_UP;
-		 if (Cube1BR.y >= Cube2TL.y) 
-			overlap += Directions::DIRECTION_DOWN;
+		if (Cube1TL.x <= Cube2BR.x && Cube1TL.x -val.x >= Cube2BR.x) 
+			overlap = Directions::DIRECTION_RIGHT;
+		if (Cube1BR.x >= Cube2TL.x && Cube1BR.x - val.x <= Cube2TL.x)
+			overlap = Directions::DIRECTION_LEFT;
+		 if (Cube1TL.y <= Cube2BR.y && Cube1TL.y - val.y >= Cube2BR.y)
+			overlap = Directions::DIRECTION_UP;
+		 if (Cube1BR.y >= Cube2TL.y && Cube1BR.y - val.y <= Cube2TL.y)
+			overlap = Directions::DIRECTION_DOWN;
 		//m_gotHit = true;
 		return overlap;
 	}

@@ -184,7 +184,11 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 	//
 	glm::ivec2 SizeOFWall = sizeOfPlayer / 4;
 	glm::ivec2 SizeOfCell = sizeOfPlayer ;
-	//int startX = 
+
+	glm::ivec3 parentPos = GetParent()->GetTransform()->GetPosition();
+
+	int divX = maxX / 2;
+	int divY = maxY / 2;
 
 	for (size_t Index = 0; Index < m_Cells.size(); ++Index)
 	{
@@ -193,23 +197,25 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 		if(cell.Type == 4)
 		{
 			cell.Type = 0;
-			m_EnemyStartPos = { cell.x * SizeOfCell.x, cell.y * SizeOfCell.y };
+			m_EnemyStartPos = { (cell.x - divX) * SizeOfCell.x + parentPos.x , (cell.y - divY) * SizeOfCell.y + parentPos.y };
 			
 		}
 		if(cell.Type == 2)
 		{
-			m_playerStartPos = { cell.x * SizeOfCell.x, cell.y * SizeOfCell.y };
+			m_playerStartPos = { (cell.x - divX) * SizeOfCell.x + parentPos.x, (cell.y - divY) * SizeOfCell.y + parentPos.y };
 			cell.Type = 0;
 		}
 
+		glm::fvec2 wayPoint = { (cell.x - divX) * SizeOfCell.x,(cell.y - divY) * SizeOfCell.y };
 		switch (cell.Type)
 		{
-		case 0: //PATH
+		case 0:
+			//PATH
 			if (m_Cells.size() > (Index + 1))
 			{
-				if ((m_Cells[Index + 1].Type & 0b1) == false)
+				if ((m_Cells[Index + 1].Type & 0b1) == false && m_Cells[Index+1].y == cell.y)
 				{
-					SDL_Rect sqr = {cell.x * SizeOfCell.x - m_PathExtraSpace,cell.y * SizeOfCell.y  - m_PathExtraSpace,
+					SDL_Rect sqr = {(cell.x - divX) * SizeOfCell.x - m_PathExtraSpace  ,(cell.y -divY) * SizeOfCell.y  - m_PathExtraSpace ,
 						SizeOfCell.x  + m_PathExtraSpace * 2,m_PathExtraSpace * 2};
 					auto path = new TankFieldLineComponent(sqr, DIRECTION_RIGHT + DIRECTION_LEFT, 2);
 					GetParent()->AddComponent(path);
@@ -223,16 +229,20 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 			{
 				if ((m_Cells[Index + maxX].Type & 0b1) == false)
 				{
-					SDL_Rect sqr = { cell.x * SizeOfCell.x  - m_PathExtraSpace ,cell.y * SizeOfCell.y - m_PathExtraSpace,
+
+
+					SDL_Rect sqr = { (cell.x- divX) * SizeOfCell.x  - m_PathExtraSpace ,(cell.y- divY) * SizeOfCell.y - m_PathExtraSpace ,
 						m_PathExtraSpace * 2,SizeOfCell.y  + m_PathExtraSpace * 2 };
 					auto path = new TankFieldLineComponent(sqr, DIRECTION_UP + DIRECTION_DOWN, 2);
 					//path.
 					GetParent()->AddComponent(path);
 					path->SetSquare(sqr);
 					nm_pLines.push_back(path);
+
+					//glm::fvec2 wayPoint = { cell.x * SizeOfCell.x,cell.y * SizeOfCell.y };
 				}
 			}
-
+			m_WayPoints.push_back({ wayPoint.x + parentPos.x,wayPoint.y + parentPos.x });
 			break;
 		case 1: // WAALLLS
 			{
@@ -241,7 +251,7 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 				{
 					if (m_Cells[Index + 1].Type == 1 && m_Cells[Index + 1].y == cell.y)
 					{
-						SDL_Rect sqr = { cell.x * SizeOfCell.x - SizeOFWall.x *2 , cell.y * SizeOfCell.y - SizeOFWall.x *2,
+						SDL_Rect sqr = { (cell.x -divX) * SizeOfCell.x - SizeOFWall.x * 2 ,(cell.y - divY) * SizeOfCell.y - SizeOFWall.x * 2,
 							SizeOfCell.x ,SizeOfCell.y };
 
 						auto sqrComp = new SquareComponent();
@@ -258,7 +268,7 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 				{
 					if (m_Cells[Index + maxX].Type == 1)
 					{
-						SDL_Rect sqr = { cell.x * SizeOfCell.x - SizeOFWall.x * 2  , cell.y * SizeOfCell.y - SizeOFWall.x *2 ,
+						SDL_Rect sqr = { (cell.x - divX) * SizeOfCell.x - SizeOFWall.x * 2 , (cell.y - divY) * SizeOfCell.y - SizeOFWall.x *2 ,
 							SizeOfCell.x,SizeOfCell.y };
 
 						auto sqrComp = new SquareComponent();
@@ -273,7 +283,7 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 				}
 				if (!HasAdded)
 				{
-					SDL_Rect sqr = { cell.x * SizeOfCell.x - SizeOFWall.x * 2 , cell.y * SizeOfCell.y - SizeOFWall.y *2 ,
+					SDL_Rect sqr = { (cell.x - divX) * SizeOfCell.x - SizeOFWall.x * 2 , (cell.y- divY) * SizeOfCell.y - SizeOFWall.y *2 ,
 						SizeOfCell.x,SizeOfCell.y };
 
 					auto sqrComp = new SquareComponent();

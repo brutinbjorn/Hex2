@@ -7,6 +7,7 @@
 #include "EnemyTankComponent.h"
 #include "HitboxManager.h"
 #include "HurtBoxComponent.h"
+#include "ScoreComponent.h"
 #include "SquareComponent.h"
 #include "TankControlComponent.h"
 #include "TankFieldControlComponent.h"
@@ -73,19 +74,10 @@ std::shared_ptr<dae::GameObject> TronConstructor::TankGameFieldAlt(const std::st
 {
 	auto field = std::make_shared<dae::GameObject>();
 
-	//auto bgImage = new RenderComponent();
-	//bgImage->SetTexture(BackgroundImg);
-
-	//auto size = bgImage->GetTextureSize();
-	//bgImage->SetOffset(-(size.x / 2), -(size.y / 2));
-
-	//field->AddComponent(bgImage);
-	//field->SetPosition(510, 360);// Center position of screen.
-
 	auto FieldControl = new TankFieldControlComponent();
 	field->AddComponent(FieldControl);
-	//FieldControl->CreateLinesAndWallsFromJsonFile(PathJsonFile, glm::ivec2{ -(size.x / 2), -(size.y / 2) });
-
+	field->SetPosition(510, 360);
+	
 	FieldControl->CreateLinesWallsAlt(PathJsonFile,SizeOfCell);
 	return field;
 }
@@ -106,6 +98,8 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 
 	auto ac =new ActorComponent();
 	bullet->AddComponent(ac);
+
+
 
 	auto BulletCol = new CollisionComponent(BulletSquare,false,ac);
 	bullet->AddComponent(BulletCol);
@@ -136,9 +130,7 @@ std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
 	auto Sqr = new SquareComponent();
 	EnemyTank->AddComponent(Sqr);
 	Sqr->SetSquare({ -18,-18,34,34 });
-	Sqr->SetRenderLines(true, { 255, 125,0,255 });
-	Sqr->SetRenderFull(true, { 255, 125,0,255 });
-	//..EnemyTank->AddComponent(Sqr);
+	
 
 
 	auto Hitbox = new HitboxComponent(Sqr,0);
@@ -157,6 +149,23 @@ std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
 
 	return EnemyTank;
 
+}
+
+std::shared_ptr<dae::GameObject> TronConstructor::ScoreObject()
+{
+
+	auto obj = std::make_shared<dae::GameObject>();
+
+	auto render = new RenderComponent();
+	obj->AddComponent(render);
+
+	auto text = new dae::TextComponent("Text",,render);
+	obj->AddComponent(text);
+
+	auto score = new ScoreComponent();
+	obj->AddComponent(score);
+
+	return obj;
 }
 
 

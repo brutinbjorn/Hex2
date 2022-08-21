@@ -7,6 +7,7 @@
 #include "TankCommands.h"
 #include "TankFieldControlComponent.h"
 
+#include "ObjectConstructor.h"
 TankGameScene::TankGameScene(const std::string& name)
 	:Scene(name)
 {
@@ -24,6 +25,7 @@ void TankGameScene::Initialize()
 	//std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameField("BackgroundTron.png", "TronFieldPathWalls.json");
 	//AddGameObject(Field);
 
+
 	std::shared_ptr<dae::GameObject> Field = TronConstructor::TankGameFieldAlt("", "TronFieldAlt1.json",{32,32});
 	AddGameObject(Field);
 
@@ -31,6 +33,9 @@ void TankGameScene::Initialize()
 
 	auto TankStartPos = fieldControl->GetPlayerStartingPosition();
 	auto EnemyStartPos = fieldControl->GetEnemyStartPosition();
+
+
+	auto score = ObjectConstructor::ScoreBar("lingua.otf", 20, "score:", float(size.x / 4 * 3), float(size.y / 2));
 
 
 	// Tank Logic

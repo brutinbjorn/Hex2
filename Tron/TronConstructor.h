@@ -13,5 +13,7 @@ namespace TronConstructor
 	std::shared_ptr<dae::GameObject> PlayerBullet(float Rotation);
 
 	std::shared_ptr<dae::GameObject> EnemyTank();
+
+	std::shared_ptr<dae::GameObject> ScoreObject();
 }
 

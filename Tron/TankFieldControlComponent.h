@@ -49,6 +49,7 @@ private:
 
 	std::vector<TankFieldLineComponent*> nm_pLines;
 	std::vector<CellOfTheGrid> m_Cells;
+	std::vector<glm::fvec2> m_WayPoints;
 
 	int m_PathExtraSpace = 4;
 	glm::ivec2 m_Offset = {};

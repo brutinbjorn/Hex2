@@ -18,7 +18,6 @@ public:
 	
 	void SetSquareComp(SquareComponent* newRect) { nm_pRect = newRect; };
 
-
 	bool IsOverlappingHitbox(HitboxComponent* GetHitBox);
 	bool GotAHit() const { return m_hasHit; }
 

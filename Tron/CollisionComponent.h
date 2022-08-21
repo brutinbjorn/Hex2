@@ -43,7 +43,7 @@ public:
 	char GetCollisionSides() const { return m_direction; };
 
 private:
-	static char IsRectsOverLapping(SDL_Rect a, SDL_Rect b);
+	char IsRectsOverLapping(SDL_Rect a, SDL_Rect b);
 
 	bool m_IsTouching = false;
 	char m_direction = 0;
