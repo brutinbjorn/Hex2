@@ -156,14 +156,14 @@ std::shared_ptr<dae::GameObject> TronConstructor::ScoreObject()
 
 	auto obj = std::make_shared<dae::GameObject>();
 
-	auto render = new RenderComponent();
-	obj->AddComponent(render);
+	//auto render = new RenderComponent();
+	//obj->AddComponent(render);
 
-	auto text = new dae::TextComponent("Text",,render);
-	obj->AddComponent(text);
+	//auto text = new dae::TextComponent("Text",,render);
+	//obj->AddComponent(text);
 
-	auto score = new ScoreComponent();
-	obj->AddComponent(score);
+	//auto score = new ScoreComponent();
+	//obj->AddComponent(score);
 
 	return obj;
 }

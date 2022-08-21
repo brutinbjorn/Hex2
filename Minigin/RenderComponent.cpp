@@ -49,7 +49,7 @@ void RenderComponent::Render() const
 		testRect.h = int(0);
 
 		int witdh, height;
-		if (m_RenderSettings & RenderSettings::USE_CUSTOM_SIZE)
+		if (m_IsSizeSet)
 		{
 			witdh = m_Size.x;
 			height = m_Size.y;

@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include "ComponentList.h"
+#include "Subject.h"
 
 class TankControlComponent final : public BaseComponent
 {
@@ -9,7 +10,10 @@ public:
 	TankControlComponent() = default;
 	TankControlComponent(RenderComponent* Body, RenderComponent* Gun);
 
-	~TankControlComponent() override = default;
+	~TankControlComponent() override
+	{
+		delete m_pSubject;
+	};
 	TankControlComponent(const TankControlComponent& other) = delete;
 	TankControlComponent(TankControlComponent&& other) noexcept = delete;
 	TankControlComponent& operator=(const TankControlComponent& other) = delete;
@@ -25,9 +29,10 @@ public:
 	//add's the value to the current rotation.
 	void RotateGun(float RotToAdd);
 
-	//void SetDirection();
+	Subject* GetSubject() { return m_pSubject; }
 
 private:
+	Subject* m_pSubject = nullptr;
 	RenderComponent* m_npBodysprite = nullptr;
 	RenderComponent* m_npGunSprite = nullptr;
 

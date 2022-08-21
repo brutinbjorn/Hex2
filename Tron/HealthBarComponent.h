@@ -46,10 +46,17 @@ public:
 
 	void Initialize() override;
 	void FixedUpdate(const float ) override;
-	void Update(const float) override {};
-	void Render() const override
+	void Update(const float) override
 	{
+		if(nm_pHealthComp->HasChanged())
+		{
+			for (int i = nm_pHealthComp->GetMaxHealth(); i >= nm_pHealthComp->GetHealth(); --i)
+			{
+				m_liveIcons[i]->SetActive(false);
+			}
+		}
 	};
+	void Render() const override{};
 	void LateUpdate(const float ) override;
 
 	//virtual void Update(const float) {};

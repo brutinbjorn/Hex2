@@ -10,7 +10,11 @@ class EnemyTankComponent :
 {
 public:
 	EnemyTankComponent(HitboxComponent* hitbox, EnemySightComponent* sight);
-	~EnemyTankComponent() override = default;
+	~EnemyTankComponent() override
+	{
+		if (m_pSubject)
+			delete m_pSubject;
+	};
 	EnemyTankComponent(const EnemyTankComponent& other) = delete;
 	EnemyTankComponent(EnemyTankComponent&& other) noexcept = delete;
 	EnemyTankComponent& operator=(const EnemyTankComponent& other) = delete;
@@ -21,6 +25,7 @@ public:
 	void Update(const float ) override;
 	void LateUpdate(const float) override {};
 	void Render() const override {};
+	Subject* GetSubject() const { return m_pSubject; }
 
 	bool Recieve(BaseComponent*, const std::string&) override;
 private:

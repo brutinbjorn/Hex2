@@ -9,6 +9,9 @@
 #include "SquareComponent.h"
 #include "TextComponent.h"
 
+
+
+
 std::shared_ptr<dae::GameObject> ObjectConstructor::BasicActor(const std::string& RenderFile)
 {
 	auto newActor = std::make_shared<dae::GameObject>();
@@ -23,37 +26,42 @@ std::shared_ptr<dae::GameObject> ObjectConstructor::BasicActor(const std::string
 	return newActor;
 }
 
-std::shared_ptr<dae::GameObject> ObjectConstructor::HealthBar(const glm::vec3& , const std::shared_ptr<dae::Font>& )
+std::shared_ptr<dae::GameObject> ObjectConstructor::HealthBar(const glm::vec3& pos, const std::string& img )
 {
 	auto NewHealthBar = std::make_shared<dae::GameObject>();
-
+	NewHealthBar->GetTransform()->SetPosition(pos.x,pos.y,pos.z);
 	//auto RenderComp = new RenderComponent();
+
 	//auto TextComp = new dae::TextComponent("levens:", font, RenderComp);
 
-	//auto LiveManComp = new HealthBarComponent(TextComp);
+	auto LiveComp = new HealthComponent(3);
+	NewHealthBar->AddComponent(LiveComp);
 
-	//NewHealthBar->AddComponent(RenderComp);
-	//NewHealthBar->AddComponent(TextComp);
-	//NewHealthBar->AddComponent(LiveManComp);
-	//NewHealthBar->GetTransform()->SetPosition(pos);
+	auto LiveBarComp = new HealthBarComponent(LiveComp,img);
+	NewHealthBar->AddComponent(LiveBarComp);
+
 	return NewHealthBar;
 }
 
-std::shared_ptr<dae::GameObject> ObjectConstructor::ScoreBar(const glm::vec3& pos,
-	const std::shared_ptr<dae::Font>& font)
+std::shared_ptr<dae::GameObject> ObjectConstructor::ScoreBar(const std::string& FontFile,const std::string& Text,unsigned int size,const glm::fvec2& pos)
 {
-	auto ScoreBar = std::make_shared<dae::GameObject>();
+	//auto ScoreBar = std::make_shared<dae::GameObject>();
+	//auto RenderComp = new RenderComponent();
+	//auto TextComp = new dae::TextComponent("levens:", font, RenderComp);
+	//auto ScoreBarComp = new ScoreComponent(TextComp);
+	//ScoreBar->AddComponent(RenderComp);
+	//ScoreBar->AddComponent(TextComp);
+	//ScoreBar->AddComponent(ScoreBarComp);
+	//ScoreBar->GetTransform()->SetPosition(pos);
+	//return ScoreBar;
 
-	auto RenderComp = new RenderComponent();
-	auto TextComp = new dae::TextComponent("levens:", font, RenderComp);
+	auto newObject = TextObject(FontFile,Text,size,pos);
+	auto textcomp = newObject->GetComponent<dae::TextComponent>();
 
-	auto ScoreBarComp = new ScoreComponent(TextComp);
+	ScoreComponent* newScore = new ScoreComponent(textcomp);
+	newObject->AddComponent(newScore);
 
-	ScoreBar->AddComponent(RenderComp);
-	ScoreBar->AddComponent(TextComp);
-	ScoreBar->AddComponent(ScoreBarComp);
-	ScoreBar->GetTransform()->SetPosition(pos);
-	return ScoreBar;
+	return newObject;
 }
 
 std::shared_ptr<dae::GameObject> ObjectConstructor::BaseButton(const glm::vec3& pos,const SDL_Rect& relativeRect,
@@ -77,6 +85,22 @@ std::shared_ptr<dae::GameObject> ObjectConstructor::BaseButton(const glm::vec3& 
 
 
 	return button;
+
+}
+
+std::shared_ptr<dae::GameObject> ObjectConstructor::TextObject(const std::string& FontFile, const std::string& text, unsigned int size, glm::fvec2 pos)
+{
+	auto textObject = std::make_shared<dae::GameObject>();
+	RenderComponent* textRenderComp = new RenderComponent;
+
+	auto font3 = dae::ResourceManager::GetInstance().LoadFont(FontFile, size);
+	dae::TextComponent* textComp = new dae::TextComponent(text, font3, textRenderComp);
+	textObject->AddComponent(textRenderComp);
+	textObject->AddComponent(textComp);
+
+	textObject->SetPosition(pos.x, pos.y);
+	return textObject;
+
 
 }
 

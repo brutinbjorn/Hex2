@@ -1,6 +1,9 @@
 #pragma once
 #include "MiniginPCH.h"
 #include "TankGameScene.h"
+
+#include "EnemyTankComponent.h"
+#include "HealthComponent.h"
 #include "TronConstructor.h"
 #include "WallComponent.h"
 #include "InputManager.h"
@@ -8,6 +11,9 @@
 #include "TankFieldControlComponent.h"
 
 #include "ObjectConstructor.h"
+#include "ScoreComponent.h"
+#include "TankControlComponent.h"
+
 TankGameScene::TankGameScene(const std::string& name)
 	:Scene(name)
 {
@@ -35,9 +41,6 @@ void TankGameScene::Initialize()
 	auto EnemyStartPos = fieldControl->GetEnemyStartPosition();
 
 
-	auto score = ObjectConstructor::ScoreBar("lingua.otf", 20, "score:", float(size.x / 4 * 3), float(size.y / 2));
-
-
 	// Tank Logic
 	std::shared_ptr<dae::GameObject> playerTank = TronConstructor::PlayerTank();
 	playerTank->GetTransform()->SetPosition(static_cast<float>(TankStartPos.x),static_cast<float>(TankStartPos.y), 0);
@@ -48,7 +51,16 @@ void TankGameScene::Initialize()
 	AddGameObject(enemyTank);
 
 
+	auto score = ObjectConstructor::ScoreBar("Lingua.otf", "Score: ", 20, {100,30});
+	AddGameObject(score);
+	auto scoreComp = score->GetComponent<ScoreComponent>();
+	enemyTank->GetComponent<EnemyTankComponent>()->GetSubject()->AddObserver(scoreComp);
 
+	auto LiveBar = ObjectConstructor::HealthBar({ 100,60,0 },"HeartSymbol.png");
+
+	auto lives = LiveBar->GetComponent<HealthComponent>();
+	playerTank->GetComponent<TankControlComponent>()->GetSubject()->AddObserver(lives);
+	AddGameObject(LiveBar);
 
 
 

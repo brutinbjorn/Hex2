@@ -4,7 +4,7 @@
 
 
 EnemyTankComponent::EnemyTankComponent(HitboxComponent* hitbox, EnemySightComponent* sight)
-	:nm_pHitbox(hitbox),nm_pSight(sight)
+	:nm_pHitbox(hitbox), nm_pSight(sight), m_pSubject(new Subject)
 {
 
 }
@@ -19,6 +19,7 @@ void EnemyTankComponent::Update(const float)
 			m_Health--;
 			if (m_Health <= 0)
 			{
+				m_pSubject->Notify("BLUE_TANK_DIED");
 				GetParent()->SetMarkForDeletion();
 			}
 			else

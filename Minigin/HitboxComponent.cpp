@@ -41,7 +41,7 @@ bool HitboxComponent::IsPointInThisHitbox(glm::ivec2 point) const
 
 bool HitboxComponent::IsSquareInThisHitBox(SDL_Rect rectangle, int CollisionID)
 {
-	if (m_gotHit)
+	if (m_gotHit || !nm_pSquareComp)
 	{
 		return false;
 	}
