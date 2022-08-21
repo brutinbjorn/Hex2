@@ -63,9 +63,11 @@ void dae::Minigin::Initialize()
 
 	Renderer::GetInstance().Init(m_Window);
 
+	srand( 0);
 #ifdef USE_SDLMIXER2
 	ServiceLocator::RegisterSoundSystem(new SDLSoundSystem());
 #endif
+
 
 }
 

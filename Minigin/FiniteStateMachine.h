@@ -8,12 +8,12 @@ public:
 	FSM() = default;
 	~FSM()
 	{
-		for (int i = 0; i < m_States.size(); ++i)
+		for (size_t i = 0; i < m_States.size(); ++i)
 		{
 			delete m_States[i];
 		}
 
-		for (int i = 0; i < m_conditions.size(); ++i)
+		for (size_t i = 0; i < m_conditions.size(); ++i)
 		{
 			delete m_conditions[i];
 		}
@@ -28,7 +28,7 @@ public:
 	{
 		m_ActiveState->Update();
 
-		for (int i = 0; i < m_conditions.size(); ++i)
+		for (size_t i = 0; i < m_conditions.size(); ++i)
 		{
 			if(m_ActiveState == m_conditions[i]->CurrentState())
 			{

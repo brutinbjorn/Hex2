@@ -7,7 +7,7 @@ void EnemyAIComponent::Initialize()
 	auto wayPoints = nm_pField->GetWayPoints();
 	float closestDistance = FLT_MAX;
 	int closestPoints = -1; 
-	for (int i = 0; i < wayPoints.size(); ++i)
+	for (int i = 0; i < static_cast<int>(wayPoints.size()); ++i)
 	{
 		auto pos = wayPoints[i];
 		auto pPos = GetParent()->GetTransform()->GetPosition();

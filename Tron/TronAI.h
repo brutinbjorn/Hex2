@@ -34,18 +34,18 @@ public:
 			nm_pMe->SetNextWayPointID(nm_pMe->GetNextWayPointID() - m_pField->GetWitdh());
 			break;
 		case 2:
-			if (possible & DIRECTION_RIGHT && cell.y == val[id+1].y)
+			if (possible & DIRECTION_RIGHT && cell.y == val[id+1].y && val[id+1].Type == 0)
 				nm_pMe->SetDirection(DIRECTION_RIGHT);
 			nm_pMe->SetNextWayPointID(nm_pMe->GetNextWayPointID() - 1);
 				break;
 		case 3:
-			if (possible & DIRECTION_DOWN && val.size() >= nm_pMe->GetNextWayPointID() - m_pField->GetWitdh())
+			if (possible & DIRECTION_DOWN && static_cast<int>(val.size()) >= nm_pMe->GetNextWayPointID() - m_pField->GetWitdh())
 				nm_pMe->SetDirection(DIRECTION_DOWN);
 
 			nm_pMe->SetNextWayPointID(nm_pMe->GetNextWayPointID() + m_pField->GetWitdh());
 				break;
 		case 4:
-			if (possible & DIRECTION_LEFT && cell.y == val[id -1].y)
+			if (possible & DIRECTION_LEFT && cell.y == val[id -1].y&& val[id - 1].Type == 0)
 				nm_pMe->SetDirection(DIRECTION_LEFT);
 			nm_pMe->SetNextWayPointID(nm_pMe->GetNextWayPointID() + 1);
 				break;
@@ -102,7 +102,7 @@ public:
 
 			auto pos = m_pObj->GetTransform()->GetPosition();
 			auto points = nm_pField->GetWayPoints();
-			for (int i = 0; i < points.size(); ++i)
+			for (int i = 0; i < static_cast<int>(points.size()); ++i)
 			{
 			auto np = points[i];
 			if (np.x - 3 <= pos.x && pos.x <= np.x + 3 && np.y - 3 <= pos.y &&  pos.y <= np.y + 3 &&
