@@ -17,21 +17,21 @@ char TankFieldLineComponent::GetPossibleDirFromRect(const glm::ivec2& posOfActor
 	if (m_ZoneOfOverlap.y < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h > posOfActor.y)
 	{
 		if ((m_ZoneOfOverlap.x < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w - m_offset > posOfActor.x)
-			&& (DIRECTION_RIGHT & m_Directions))
+			&& (DIRECTION_RIGHT & m_Directions) && !(returnVal & DIRECTION_RIGHT))
 			returnVal += DIRECTION_RIGHT;
 
 		if ((m_ZoneOfOverlap.x + m_offset < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w > posOfActor.x)
-			&& (DIRECTION_LEFT & m_Directions))
+			&& (DIRECTION_LEFT & m_Directions) && !(returnVal & DIRECTION_LEFT))
 			returnVal += DIRECTION_LEFT;
 	}
 	if (m_ZoneOfOverlap.x < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w > posOfActor.x)
 	{
 		if ((m_ZoneOfOverlap.y + m_offset < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h > posOfActor.y)
-			&& (DIRECTION_UP & m_Directions))
+			&& (DIRECTION_UP & m_Directions) && !(returnVal & DIRECTION_UP))
 			returnVal += DIRECTION_UP;
 
 		if ((m_ZoneOfOverlap.y  < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h - m_offset > posOfActor.y)
-			&& (DIRECTION_DOWN & m_Directions))
+			&& (DIRECTION_DOWN & m_Directions) && !(returnVal & DIRECTION_DOWN))
 			returnVal += DIRECTION_DOWN;
 
 	}
@@ -44,8 +44,8 @@ bool TankFieldLineComponent::IsMovePossible(char direction, const glm::ivec2& po
 {
 
 	bool canMove = false;
-	if ((m_ZoneOfOverlap.y <= posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h >= posOfActor.y)
-		&& (m_ZoneOfOverlap.x <= posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w >= posOfActor.x))
+	if ((m_ZoneOfOverlap.y < posOfActor.y && m_ZoneOfOverlap.y + m_ZoneOfOverlap.h > posOfActor.y)
+		&& (m_ZoneOfOverlap.x < posOfActor.x && m_ZoneOfOverlap.x + m_ZoneOfOverlap.w > posOfActor.x))
 	{
 		if (m_Directions & direction)
 		switch (direction)

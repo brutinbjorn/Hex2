@@ -46,7 +46,7 @@ void TankGameScene::Initialize()
 	playerTank->GetTransform()->SetPosition(static_cast<float>(TankStartPos.x),static_cast<float>(TankStartPos.y), 0);
 	AddGameObject(playerTank);
 
-	auto enemyTank = TronConstructor::EnemyTank();
+	auto enemyTank = TronConstructor::EnemyTank(fieldControl);
 	enemyTank->GetTransform()->SetPosition(static_cast<float>(EnemyStartPos.x),static_cast<float>(EnemyStartPos.y),0);
 	AddGameObject(enemyTank);
 
@@ -69,12 +69,12 @@ void TankGameScene::Initialize()
 
 	dae::Action TurnGunLeft = dae::Action();
 	TurnGunLeft.key = SDL_SCANCODE_Z;
-	TurnGunLeft.pCommand = new TurnGunCommand(tankGun,-1);
+	TurnGunLeft.pCommand = new TurnGunCommand(tankGun,-3);
 	dae::InputManager::GetInstance().AddAction(TurnGunLeft);
 
 	dae::Action TurnGunRight = dae::Action();
 	TurnGunRight.key = SDL_SCANCODE_X;
-	TurnGunRight.pCommand = new TurnGunCommand(tankGun, 1);
+	TurnGunRight.pCommand = new TurnGunCommand(tankGun, 3);
 	dae::InputManager::GetInstance().AddAction(TurnGunRight);
 
 	dae::Action FireGun = dae::Action();
@@ -83,25 +83,26 @@ void TankGameScene::Initialize()
 	dae::InputManager::GetInstance().AddAction(FireGun);
 
 
+	auto ac = playerTank->GetComponent<ActorComponent>();
 	//movement
 	dae::Action MoveDownLocked = dae::Action();
 	MoveDownLocked.key = SDL_SCANCODE_DOWN;
-	MoveDownLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_DOWN, 0, 1);
+	MoveDownLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_DOWN, 0, 1,ac);
 	dae::InputManager::GetInstance().AddAction(MoveDownLocked);
 
 	dae::Action MoveUpLocked = dae::Action();
 	MoveUpLocked.key = SDL_SCANCODE_UP;
-	MoveUpLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_UP, 0, -1);
+	MoveUpLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_UP, 0, -1,ac);
 	dae::InputManager::GetInstance().AddAction(MoveUpLocked);
 
 	dae::Action MoveLeftLocked = dae::Action();
 	MoveLeftLocked.key = SDL_SCANCODE_LEFT;
-	MoveLeftLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_LEFT, -1, 0);
+	MoveLeftLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_LEFT, -1, 0,ac);
 	dae::InputManager::GetInstance().AddAction(MoveLeftLocked);
 
 	dae::Action MoveRightLocked = dae::Action();
 	MoveRightLocked.key = SDL_SCANCODE_RIGHT;
-	MoveRightLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_RIGHT, 1, 0);
+	MoveRightLocked.pCommand = new LimitedMoveCommandAlt(playerTank.get(), fieldControl,DIRECTION_RIGHT, 1, 0,ac);
 	dae::InputManager::GetInstance().AddAction(MoveRightLocked);
 
 

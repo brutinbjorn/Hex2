@@ -14,7 +14,7 @@ class XBox360Controller::XBox360ControllerImp
 public:
 	XBox360ControllerImp() = default;
 	~XBox360ControllerImp() = default;
-	void Update() ;
+	void Update(int ControllerID);
 	bool IsDown(XBox360Controller::ControllerButton button) const;
 	bool IsUp(XBox360Controller::ControllerButton button) const ;
 	bool IsPressed(XBox360Controller::ControllerButton button) const;
@@ -24,13 +24,13 @@ private:
 
 };
 
-void XBox360Controller::XBox360ControllerImp::Update()
+void XBox360Controller::XBox360ControllerImp::Update(int ControllerID)
 {
 	CopyMemory(&previeusState, &CurrentState, sizeof(XINPUT_STATE));
 	ZeroMemory(&CurrentState, sizeof(XINPUT_STATE));
 
 	//ZeroMemory(&CurrentState, sizeof(XINPUT_STATE) * XUSER_MAX_COUNT ); // voorbeeld van het gebruik meerdere controllers
-	XInputGetState(0, &CurrentState);
+	XInputGetState(ControllerID, &CurrentState);
 	
 }
 
@@ -52,10 +52,10 @@ bool XBox360Controller::XBox360ControllerImp::IsPressed(XBox360Controller::Contr
 }
 
 
-void XBox360Controller::Update() const
+void XBox360Controller::Update(int ControllerID) const
 {
 	if (m_pImpl != nullptr)
-		m_pImpl->Update();
+		m_pImpl->Update(ControllerID);
 }
 
 bool XBox360Controller::IsDown(ControllerButton Button) const

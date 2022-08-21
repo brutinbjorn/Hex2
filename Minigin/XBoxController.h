@@ -40,7 +40,7 @@ public:
 		KeyV = 0x8000,
 	};
 
-	void Update() const;
+	void Update(int ControllerID) const;
 	bool IsDown(ControllerButton Button) const;
 	bool IsPressed(ControllerButton Button) const;
 	bool IsUp(ControllerButton button) const;

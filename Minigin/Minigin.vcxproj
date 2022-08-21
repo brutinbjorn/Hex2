@@ -245,11 +245,13 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.87\imstb_truetype.h" />
     <ClInclude Include="ActorComponent.h" />
+    <ClInclude Include="AIStates.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="ButtonComponent.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DefaultScene.h" />
+    <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="GraphConnections.h" />
     <ClInclude Include="GraphEnums.h" />
     <ClInclude Include="GraphNodes.h" />
@@ -337,11 +339,13 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp" />
+    <ClCompile Include="AIStates.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="ButtonComponent.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
+    <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="GraphConnections.cpp" />
     <ClCompile Include="GraphEnums.cpp" />
     <ClCompile Include="GraphNodes.cpp" />

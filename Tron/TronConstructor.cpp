@@ -4,6 +4,7 @@
 #include "BouncingBulletComponent.h"
 #include "CollisionComponent.h"
 #include "ComponentList.h"
+#include "EnemyAIComponent.h"
 #include "EnemyTankComponent.h"
 #include "HitboxManager.h"
 #include "HurtBoxComponent.h"
@@ -18,10 +19,7 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 {
 	auto tank = std::make_shared<dae::GameObject>();
 
-	//actor Logic
-	auto ac = new ActorComponent();
-	tank->AddComponent(ac);
-
+	
 	//The Body
 	auto BodyRender = new RenderComponent();
 	tank->AddComponent(BodyRender);
@@ -42,6 +40,10 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerTank()
 	GunLogic->LinkGunTexture(GunRender);
 	tank->AddComponent(GunLogic);
 
+
+	auto actor = new ActorComponent();
+	tank->AddComponent(actor);
+	actor->SetSpeed(50.f);
 
 	auto TankControls = new TankControlComponent(BodyRender,GunRender);
 	tank->AddComponent(TankControls);
@@ -109,14 +111,14 @@ std::shared_ptr<dae::GameObject> TronConstructor::PlayerBullet(float Rotation)
 	bullet->AddComponent(BulletHurtBoxComponent);
 
 
-	auto bulletLogic = new BouncingBulletComponent(static_cast<float>(M_PI) * (Rotation-90.f)/ 180.f ,BulletCol,BulletHurtBoxComponent,ac,25);
+	auto bulletLogic = new BouncingBulletComponent(static_cast<float>(M_PI) * (Rotation-90.f)/ 180.f ,BulletCol,BulletHurtBoxComponent,ac,100);
 	bullet->AddComponent(bulletLogic);
 
 	return bullet;
 
 }
 
-std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
+std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank(TankFieldControlComponent* field)
 {
 	auto EnemyTank = std::make_shared<dae::GameObject>();
 
@@ -146,6 +148,12 @@ std::shared_ptr<dae::GameObject> TronConstructor::EnemyTank()
 	auto EnemyTankControl = new EnemyTankComponent(Hitbox,Sight);
 	EnemyTank->AddComponent(EnemyTankControl);
 
+	auto ac = new ActorComponent();
+	ac->SetSpeed(10.f);
+	EnemyTank->AddComponent(ac);
+
+	auto AI = new EnemyAIComponent(field,ac);
+	EnemyTank->AddComponent(AI);
 
 	return EnemyTank;
 

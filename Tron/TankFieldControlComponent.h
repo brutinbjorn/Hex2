@@ -7,6 +7,13 @@
 
 
 
+struct CellOfTheGrid
+{
+	CellOfTheGrid(int x,int y,int type):x(x),y(y),Type(type) {}
+	int x, y;
+	int Type;
+};
+
 
 
 class TankFieldControlComponent :
@@ -35,23 +42,21 @@ public:
 	void LateUpdate(const float ) override{};
 	void Render() const override {};
 
-
-
+	const std::vector<glm::fvec2>& GetWayPoints() { return m_WayPoints; };
+	const std::vector<CellOfTheGrid>& GetCells() { return m_Cells; }
+	int GetWitdh() { return  m_maxWitdh; };
+	int GetHeight() { return m_maxHeight; };
 private:
 	//void CreateWalls();
 
-	struct CellOfTheGrid
-	{
-		CellOfTheGrid(int x,int y,int type):x(x),y(y),Type(type) {}
-		int x, y;
-		int Type;
-	};
+	int m_maxWitdh = 0;
+	int m_maxHeight = 0;
 
 	std::vector<TankFieldLineComponent*> nm_pLines;
 	std::vector<CellOfTheGrid> m_Cells;
 	std::vector<glm::fvec2> m_WayPoints;
 
-	int m_PathExtraSpace = 4;
+	int m_PathExtraSpace = 5;
 	glm::ivec2 m_Offset = {};
 	glm::ivec2 m_playerStartPos = {};
 	glm::ivec2 m_EnemyStartPos = {};

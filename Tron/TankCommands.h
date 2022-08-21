@@ -47,9 +47,10 @@ private:
 class LimitedMoveCommandAlt : public Command
 {
 public:
-	LimitedMoveCommandAlt(dae::GameObject* actor, TankFieldControlComponent* grid, char Direction, float x, float y) :
+	LimitedMoveCommandAlt(dae::GameObject* actor, TankFieldControlComponent* grid, char Direction, float x, float y, ActorComponent* Acomp) :
 		m_pActor(actor),m_pGrid(grid),
-		m_direction(Direction), m_xMove(x), m_yMove(y) {};
+		m_direction(Direction), m_xMove(x), m_yMove(y),
+		m_pActorComp(Acomp){};
 	~LimitedMoveCommandAlt() override = default;
 
 	void Execute() override
@@ -57,7 +58,9 @@ public:
 		glm::ivec2 centerPos;
 		if (m_pGrid->AskIfPlayerCanMoveInRequestedDirection(m_direction, m_pActor->GetTransform()->GetPosition(), centerPos))
 		{
-			m_pActor->GetTransform()->Translate(m_xMove, m_yMove, 0);
+			m_pActorComp->SetVelocity(glm::vec2(m_xMove, m_yMove));
+
+			//m_pActor->GetTransform()->Translate(m_xMove, m_yMove, 0);
 
 			auto pos = m_pActor->GetTransform()->GetPosition();
 			if(m_direction == DIRECTION_LEFT || m_direction == DIRECTION_RIGHT)
@@ -79,7 +82,7 @@ private:
 
 	TankFieldControlComponent* m_pGrid = nullptr;
 	dae::GameObject* m_pActor = nullptr;
-
+	ActorComponent* m_pActorComp = nullptr;
 };
 
 

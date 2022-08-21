@@ -10,11 +10,14 @@ ActorComponent::ActorComponent()
 {
 }
 
+
 void ActorComponent::Update(float dt)
 {
 	//auto pos = GetParent()->GetTransform()->GetPosition();
 
 	GetParent()->GetTransform()->Translate(m_velocity.x * m_speed * dt , m_velocity.y * m_speed * dt , 0);
+	m_velocity.x = 0.f;
+	m_velocity.y = 0.f;
 }
 
 void ActorComponent::Render() const

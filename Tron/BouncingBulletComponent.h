@@ -24,6 +24,7 @@ public:
 			glm::vec2 vec;
 			vec.x = std::cos(m_Rotation);
 			vec.y = std::sin(m_Rotation);
+			m_ContinuesVec = vec;
 			nm_pActor->SetVelocity(vec);
 			nm_pActor->SetSpeed(speed);
 
@@ -52,9 +53,10 @@ private:
 	CollisionComponent* nm_pCollisionBox = nullptr;
 
 	//glm::vec2 m_Vector;
+	glm::fvec2 m_ContinuesVec = {};
 
 	float m_Rotation = 0.f;
 	float m_speed = 2;
-	int m_BounceLeft = 5;
+	int m_BounceLeft = 4;
 };
 

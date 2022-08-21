@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "MiniginPCH.h"
+#include "TankFieldControlComponent.h"
+
 
 namespace TronConstructor
 {
@@ -12,7 +14,7 @@ namespace TronConstructor
 
 	std::shared_ptr<dae::GameObject> PlayerBullet(float Rotation);
 
-	std::shared_ptr<dae::GameObject> EnemyTank();
+	std::shared_ptr<dae::GameObject> EnemyTank(TankFieldControlComponent* field);
 
 	std::shared_ptr<dae::GameObject> ScoreObject();
 }

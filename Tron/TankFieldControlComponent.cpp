@@ -16,7 +16,7 @@
 	{
 		auto dir = nm_pLines[i]->GetPossibleDirFromRect(position, CenterPosOfLine);
 
-		if (dir != 0)
+		if (dir &! possibleDirections)
 			possibleDirections += dir;
 	}
 	return possibleDirections;
@@ -179,6 +179,8 @@ void TankFieldControlComponent::CreateLinesWallsAlt(const std::string& file, glm
 	}
 	/// </summary>
 
+	m_maxWitdh = maxX;
+	m_maxHeight = maxY;
 
 
 	//

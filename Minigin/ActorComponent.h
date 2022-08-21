@@ -2,15 +2,20 @@
 #include "BaseComponent.h"
 #include "SDL.h"
 #include "MiniginPCH.h"
+
+#include "Subject.h"
 //#include "cstring"
 
-class Subject;
+//class Subject;
 
 class ActorComponent final : public BaseComponent
 {
 public:
 	ActorComponent();
-	~ActorComponent() override = default;
+	~ActorComponent() override
+	{
+		delete m_pSubject;
+	};
 	ActorComponent(const ActorComponent& other) = delete;
 	ActorComponent(ActorComponent&& other) noexcept = delete;
 	ActorComponent& operator=(const ActorComponent& other) = delete;
@@ -38,6 +43,7 @@ private:
 	Subject* m_pSubject = nullptr;
 	glm::vec2 m_velocity= glm::vec2{0,0};
 	float m_speed = 0.f;
+
 	bool m_DebugRender = true;
 };
 

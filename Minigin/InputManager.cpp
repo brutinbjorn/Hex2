@@ -120,7 +120,7 @@ bool dae::InputManager::ProcessInput()
 
 	if (m_pController)
 	{
-		m_pController->Update();
+		m_pController->Update(0);
 
 		for (std::list<Action>::iterator iter = m_Actions.begin(); iter != m_Actions.end(); ++iter)
 		{
@@ -144,6 +144,53 @@ bool dae::InputManager::ProcessInput()
 	}
 
 	return true;
+
+
+
+	//if(!m_pController || !m_pController->IsValid())
+	//{
+	//	CheckForController();
+	//}
+
+
+
+
+	//int controllerId = -1;
+
+	//for (DWORD i = 0; i < XUSER_MAX_COUNT && controllerId == -1; i++)
+	//{
+	//	XINPUT_STATE state;
+	//	ZeroMemory(&state, sizeof(XINPUT_STATE));
+
+	//	if (XInputGetState(i, &state) == ERROR_SUCCESS)
+	//		controllerId = i;
+	//	m_pController = m_pController = new XBox360Controller(controllerId);
+
+	//	if (m_pController)
+	//	{
+	//		m_pController->Update(i);
+
+	//		for (std::list<Action>::iterator iter = m_Actions.begin(); iter != m_Actions.end(); ++iter)
+	//		{
+	//			if (m_pController->IsDown(iter->XButton) && iter->type == InputType::WentDown)
+	//			{
+	//				iter->pCommand->Execute();
+	//			}
+	//			if (m_pController->IsPressed(iter->XButton) && iter->type == InputType::IsPressed)
+	//			{
+	//				iter->pCommand->Execute();
+	//			}
+	//			if (m_pController->IsUp(iter->XButton) && iter->type == InputType::WentUp)
+	//			{
+	//				iter->pCommand->Execute();
+	//			}
+	//		}
+
+	//		if (m_pController->IsDown(XBox360Controller::ControllerButton::Back))
+	//			return false;
+	//	}
+	//}
+	//return true;
 
 }
 

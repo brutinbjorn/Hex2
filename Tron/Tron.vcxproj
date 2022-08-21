@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="BouncingBulletComponent.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
+    <ClCompile Include="EnemyAIComponent.cpp" />
     <ClCompile Include="EnemySightComponent.cpp" />
     <ClCompile Include="EnemyTankComponent.cpp" />
     <ClCompile Include="TankCommands.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="TankGunComponent.cpp" />
     <ClCompile Include="Tron.cpp" />
+    <ClCompile Include="TronAI.cpp" />
     <ClCompile Include="TronConstructor.cpp" />
     <ClCompile Include="TronEngine.cpp" />
     <ClCompile Include="WallComponent.cpp" />
@@ -199,6 +201,7 @@
   <ItemGroup>
     <ClInclude Include="BouncingBulletComponent.h" />
     <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="EnemyAIComponent.h" />
     <ClInclude Include="EnemySightComponent.h" />
     <ClInclude Include="EnemyTankComponent.h" />
     <ClInclude Include="ENUMS.h" />
@@ -210,6 +213,7 @@
     <ClInclude Include="TankGameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="TankGunComponent.h" />
+    <ClInclude Include="TronAI.h" />
     <ClInclude Include="TronConstructor.h" />
     <ClInclude Include="TronEngine.h" />
     <ClInclude Include="WallComponent.h" />
